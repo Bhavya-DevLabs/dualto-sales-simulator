@@ -1,8 +1,8 @@
-import { useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import QuestionPanel from '../components/QuestionPanel';
 import StageTransitionCard from '../components/StageTransitionCard';
+import StoryScreen from '../components/StoryScreen';
 
 export default function ScreenRenderer({
   screen,
@@ -14,6 +14,15 @@ export default function ScreenRenderer({
   onAdvance,
   onRestart,
 }) {
+  // Two-phase state: for question screens with preText,
+  // show story first, then the question.
+  const [storyComplete, setStoryComplete] = useState(false);
+
+  // Reset story phase whenever the screen changes
+  useEffect(() => {
+    setStoryComplete(false);
+  }, [screen?.id]);
+
   if (!screen) {
     return (
       <div
@@ -55,13 +64,38 @@ export default function ScreenRenderer({
       );
 
     case 'info':
-      return <InfoScreen screen={screen} onAdvance={onAdvance} />;
-
-    case 'question':
       return (
-        <div style={{ padding: '48px 24px 60px' }}>
+        <StoryScreen
+          lines={Array.isArray(screen.body) ? screen.body : [screen.body]}
+          onComplete={onAdvance}
+          ctaLabel={screen.ctaLabel || 'Continue →'}
+          externalLink={screen.externalLink}
+        />
+      );
+
+    case 'question': {
+      // If screen has preText and story phase not yet complete → show story
+      if (screen.preText && !storyComplete) {
+        const lines = screen.preText.split('\n').filter((l) => l.trim());
+        return (
+          <StoryScreen
+            lines={lines}
+            onComplete={() => setStoryComplete(true)}
+            ctaLabel="Continue →"
+          />
+        );
+      }
+
+      // Question phase (no preText rendered — story already shown)
+      return (
+        <motion.div
+          key={screen.id + '-question'}
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          style={{ padding: '48px 24px 60px' }}
+        >
           <QuestionPanel
-            preText={screen.preText}
             question={screen.question}
             options={screen.options}
             multiSelect={screen.multiSelect}
@@ -71,8 +105,9 @@ export default function ScreenRenderer({
             onSelect={onSelect}
             onSubmit={onSubmit}
           />
-        </div>
+        </motion.div>
       );
+    }
 
     case 'completion':
       return <CompletionScreen screen={screen} onRestart={onRestart} />;
@@ -115,33 +150,7 @@ function useEnterKeyAdvance(onAdvance) {
   }, [handleKey]);
 }
 
-/* ─── Pill CTA (red bg) ─── */
-function RedCTA({ label, onClick }) {
-  return (
-    <motion.button
-      onClick={onClick}
-      style={{
-        backgroundColor: '#CA001B',
-        color: '#FFFFFF',
-        fontFamily: "'Montserrat', sans-serif",
-        fontWeight: 700,
-        fontSize: 15,
-        padding: '14px 48px',
-        borderRadius: 10,
-        border: 'none',
-        cursor: 'pointer',
-        outline: 'none',
-        boxShadow: '0 4px 16px rgba(202, 0, 27, 0.3)',
-      }}
-      whileHover={{ scale: 1.02, backgroundColor: '#A8001A' }}
-      whileTap={{ scale: 0.97 }}
-    >
-      {label}
-    </motion.button>
-  );
-}
-
-/* ─── SVG Trophy Icon (replaces emoji) ─── */
+/* ─── SVG Trophy Icon ─── */
 function TrophyIcon() {
   return (
     <svg
@@ -248,7 +257,6 @@ function IntroScreen({ screen, onAdvance }) {
             borderRadius: 10,
             border: 'none',
             cursor: 'pointer',
-            outline: 'none',
             boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
           }}
           initial={{ opacity: 0, y: 20 }}
@@ -260,162 +268,6 @@ function IntroScreen({ screen, onAdvance }) {
           {screen.ctaLabel || 'Continue'}
         </motion.button>
       </div>
-    </div>
-  );
-}
-
-/* ─── INFO SCREEN ─── */
-function InfoScreen({ screen, onAdvance }) {
-  useEnterKeyAdvance(onAdvance);
-  const bodyArray = Array.isArray(screen.body) ? screen.body : [screen.body];
-
-  return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: 'calc(100vh - 76px)',
-        padding: '40px 20px',
-        backgroundColor: '#EEF2FF',
-        marginLeft: -40,
-        marginRight: -40,
-      }}
-    >
-      <motion.div
-        style={{
-          backgroundColor: '#FFFFFF',
-          borderRadius: 20,
-          padding: '40px 48px',
-          maxWidth: 720,
-          width: '100%',
-          textAlign: 'center',
-          boxShadow: '0 4px 24px rgba(27, 43, 94, 0.10)',
-        }}
-        initial={{ opacity: 0, y: 28 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-      >
-        {/* Micro label */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            width: '100%',
-            marginBottom: 16,
-          }}
-        >
-          <div
-            style={{
-              backgroundColor: '#1B2B5E',
-              color: '#FFFFFF',
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 600,
-              fontSize: 11,
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              padding: '6px 18px',
-              borderRadius: 9999,
-            }}
-          >
-            MISSION BRIEF
-          </div>
-        </div>
-
-        {/* Body paragraphs */}
-        <div style={{ marginBottom: screen.stakeholders ? 24 : 36 }}>
-          {bodyArray.map((line, i) => (
-            <p
-              key={i}
-              style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontWeight: 500,
-                fontSize: 17,
-                color: '#134E4A',
-                lineHeight: 1.8,
-                textAlign: 'center',
-                marginBottom: i < bodyArray.length - 1 ? 18 : 0,
-              }}
-            >
-              {line}
-            </p>
-          ))}
-        </div>
-
-        {/* Stakeholder pills */}
-        {screen.stakeholders && screen.stakeholders.length > 0 && (
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-              gap: 10,
-              marginBottom: 36,
-            }}
-          >
-            {screen.stakeholders.map((name) => (
-              <span
-                key={name}
-                style={{
-                  display: 'inline-block',
-                  backgroundColor: '#EEF1F8',
-                  color: '#1B2B5E',
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontWeight: 600,
-                  fontSize: 13,
-                  padding: '8px 18px',
-                  borderRadius: 9999,
-                  border: '1px solid #C5CDE8',
-                }}
-              >
-                {name}
-              </span>
-            ))}
-          </div>
-        )}
-
-        {/* Actions */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 16,
-          }}
-        >
-          {screen.externalLink && (
-            <a
-              href={screen.externalLink.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'inline-block',
-                padding: '12px 36px',
-                borderRadius: 10,
-                fontFamily: "'Montserrat', sans-serif",
-                fontWeight: 600,
-                fontSize: 15,
-                color: '#1B2B5E',
-                border: '2px solid #1B2B5E',
-                textDecoration: 'none',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#1B2B5E';
-                e.currentTarget.style.color = '#FFFFFF';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.color = '#1B2B5E';
-              }}
-            >
-              {screen.externalLink.label}
-              <ExternalLink size={15} strokeWidth={2} style={{ marginLeft: 6, verticalAlign: 'middle' }} />
-            </a>
-          )}
-          <RedCTA label={screen.ctaLabel || 'Continue'} onClick={onAdvance} />
-        </div>
-      </motion.div>
     </div>
   );
 }
@@ -502,7 +354,6 @@ function CompletionScreen({ screen, onRestart }) {
       <ConfettiBurst />
 
       <div style={{ textAlign: 'center', maxWidth: 580, position: 'relative', zIndex: 1 }}>
-        {/* Trophy with pulse glow */}
         <motion.div
           style={{
             lineHeight: 1,

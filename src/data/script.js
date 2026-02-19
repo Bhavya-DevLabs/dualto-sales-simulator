@@ -293,7 +293,8 @@ export const SCRIPT = [
     type: "info",
     character: null,
     body: [
-      "The Connectivity Welcome Packet contains everything the IT team needs — including the Federation section for SSO setup and the full list of URLs to whitelist."
+      "The Connectivity Welcome Packet contains everything the IT team needs.",
+      "Including the Federation section for SSO setup and the full list of URLs to whitelist."
     ],
     ctaLabel: "Continue"
   },
@@ -310,7 +311,8 @@ export const SCRIPT = [
     type: "info",
     character: { side: "right", id: "sales" },
     body: [
-      "The purchase team says, \"Congratulations, here is the PO for DUALTO Energy system. We need the installation to begin asap.\""
+      "The purchase team says:",
+      "\"Congratulations, here is the PO for DUALTO Energy system. We need the installation to begin asap.\""
     ],
     ctaLabel: "Continue"
   },
@@ -319,7 +321,8 @@ export const SCRIPT = [
     type: "info",
     character: { side: "right", id: "sales" },
     body: [
-      "It's time to create the Polyphonic Fleet account for the hospital — so that during installation, they can link their DUALTO system to their account.",
+      "It's time to create the Polyphonic Fleet account for the hospital.",
+      "So that during installation, they can link their DUALTO system to their account.",
       "You visit the biomed head again.",
       "\"Sir, I want some information from you in order to create your Polyphonic Fleet account via the APAC technical team.\""
     ],
@@ -356,7 +359,10 @@ export const SCRIPT = [
     id: "screen_25",
     type: "info",
     character: null,
-    body: [ "Try out the form here!" ],
+    body: [
+      "The Intake Form collects all the details the APAC team needs to set up the hospital's Polyphonic Fleet account.",
+      "Try out the form here!"
+    ],
     externalLink: {
       label: "Open Intake Form →",
       url: "https://forms.office.com/Pages/ResponsePage.aspx?id=M0vJOjWRIUiVAur9plkqNdoUYLrfakJFrSl0JL_ZuyxUNlZQOFhaRzhPSEhKN0RJNlhZUEs1VjM2Wi4u"
@@ -412,7 +418,7 @@ export const SCRIPT = [
     type: "info",
     character: null,
     body: [
-      "Quick information: What are MAC addresses & why do we need to whitelist them before installation?",
+      "Quick information: What are MAC addresses & why do we need to whitelist them?",
       "A MAC (Media Access Control) address is a unique hardware identifier assigned to the DUALTO communications module.",
       "Whitelisting tells the hospital's network to recognise and allow DUALTO to connect — without it, the device would be blocked."
     ],
@@ -476,8 +482,9 @@ export const SCRIPT = [
     type: "info",
     character: null,
     body: [
-      "Now that the assembly is done and the device is connected to the internet, the device asks the hospital to log in to their Polyphonic Fleet account — either by scanning the QR code or entering the 8-digit code at the website URL.",
-      "Once the biomed logs in to the Polyphonic Fleet account & authenticates, the device gets installed."
+      "Now that the assembly is done and the device is connected to the internet...",
+      "The device asks the hospital to log in to their Polyphonic Fleet account — either by scanning the QR code or entering the 8-digit code at the website URL.",
+      "Once the biomed logs in and authenticates, the device gets installed."
     ],
     ctaLabel: "Continue"
   },

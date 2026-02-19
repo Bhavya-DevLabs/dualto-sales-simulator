@@ -2,7 +2,6 @@ import OptionsGrid from './OptionsGrid';
 import SubmitButton from './SubmitButton';
 
 export default function QuestionPanel({
-  preText,
   question,
   options,
   multiSelect,
@@ -48,35 +47,6 @@ export default function QuestionPanel({
           STEP CHECK
         </div>
       </div>
-
-      {/* Pre-text narrative (italic, muted, above the question) */}
-      {preText && (
-        <div
-          style={{
-            maxWidth: 680,
-            width: '100%',
-            marginBottom: 24,
-            paddingBottom: 20,
-            borderBottom: '1px solid #CBD5E1',
-          }}
-        >
-          <p
-            style={{
-              fontFamily: "'Noto Sans', sans-serif",
-              fontWeight: 400,
-              fontSize: 15,
-              fontStyle: 'italic',
-              color: '#64748B',
-              textAlign: 'center',
-              lineHeight: 1.7,
-              whiteSpace: 'pre-line',
-              margin: 0,
-            }}
-          >
-            {preText}
-          </p>
-        </div>
-      )}
 
       {/* Question text */}
       <h2
