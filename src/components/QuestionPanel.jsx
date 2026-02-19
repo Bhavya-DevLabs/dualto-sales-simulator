@@ -51,22 +51,31 @@ export default function QuestionPanel({
 
       {/* Pre-text narrative (italic, muted, above the question) */}
       {preText && (
-        <p
+        <div
           style={{
-            fontFamily: "'Noto Sans', sans-serif",
-            fontWeight: 400,
-            fontSize: 15,
-            fontStyle: 'italic',
-            color: '#64748B',
-            textAlign: 'center',
-            lineHeight: 1.7,
             maxWidth: 680,
+            width: '100%',
             marginBottom: 24,
-            whiteSpace: 'pre-line',
+            paddingBottom: 20,
+            borderBottom: '1px solid #CBD5E1',
           }}
         >
-          {preText}
-        </p>
+          <p
+            style={{
+              fontFamily: "'Noto Sans', sans-serif",
+              fontWeight: 400,
+              fontSize: 15,
+              fontStyle: 'italic',
+              color: '#64748B',
+              textAlign: 'center',
+              lineHeight: 1.7,
+              whiteSpace: 'pre-line',
+              margin: 0,
+            }}
+          >
+            {preText}
+          </p>
+        </div>
       )}
 
       {/* Question text */}
