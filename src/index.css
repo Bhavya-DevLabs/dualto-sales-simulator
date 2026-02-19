@@ -21,12 +21,12 @@
 }
 
 html {
-  background-color: #EEF2FF;
+  background-color: #F8F9FB;
 }
 
 body {
   font-family: 'Montserrat', sans-serif;
-  background-color: #EEF2FF;
+  background-color: #F8F9FB;
   color: #134E4A;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
@@ -35,7 +35,6 @@ body {
 
 #root {
   min-height: 100vh;
-  background-color: #EEF2FF;
 }
 
 /* Accessible focus rings — override inline outline:none */

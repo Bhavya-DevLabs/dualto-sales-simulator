@@ -6,6 +6,7 @@ import FeedbackOverlay from './FeedbackOverlay';
 import IdleTimeoutOverlay from './IdleTimeoutOverlay';
 import AdminControls from './AdminControls';
 import ExitConfirmDialog from './ExitConfirmDialog';
+import BackgroundPattern from './BackgroundPattern';
 import ScreenRenderer from '../screens/ScreenRenderer';
 import useSimulatorState from '../engine/useSimulatorState';
 import useIdleTimeout from '../engine/useIdleTimeout';
@@ -66,10 +67,12 @@ export default function SimulatorShell({ user, onSignOut }) {
     <div
       style={{
         minHeight: '100vh',
-        backgroundColor: '#EEF2FF',
+        backgroundColor: '#F8F9FB',
+        position: 'relative',
         fontFamily: "'Noto Sans', sans-serif",
       }}
     >
+      <BackgroundPattern />
       <ExitConfirmDialog />
       <Header
         currentScreenIndex={currentScreenIndex}
@@ -81,7 +84,7 @@ export default function SimulatorShell({ user, onSignOut }) {
       />
 
       {/* Main content — offset for header (72px) + progress bar (4px) */}
-      <main id="main-content" style={{ paddingTop: 76, paddingLeft: 40, paddingRight: 40 }}>
+      <main id="main-content" style={{ paddingTop: 76, paddingLeft: 40, paddingRight: 40, position: 'relative', zIndex: 1 }}>
         <AnimatePresence mode="wait">
           <motion.div
             key={currentScreen?.id || 'empty'}
