@@ -74,8 +74,9 @@ export default function Header({ currentScreenIndex, totalScreens, stageNumber, 
           {/* Right: user pills + sign out */}
           {user && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, zIndex: 2 }}>
-              {/* Region pill */}
+              {/* Region pill — hidden on small screens */}
               <div
+                className="header-pills-responsive"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -93,8 +94,9 @@ export default function Header({ currentScreenIndex, totalScreens, stageNumber, 
                 {user.region}
               </div>
 
-              {/* Name pill */}
+              {/* Name pill — hidden on small screens */}
               <div
+                className="header-pills-responsive"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -112,21 +114,20 @@ export default function Header({ currentScreenIndex, totalScreens, stageNumber, 
                 {user.name}
               </div>
 
-              {/* Sign Out icon button */}
+              {/* Sign Out icon button — 44px touch target */}
               <button
                 onClick={handleSignOutClick}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  width: 36,
-                  height: 36,
+                  width: 44,
+                  height: 44,
                   borderRadius: '50%',
                   border: '2px solid rgba(255,255,255,0.4)',
                   backgroundColor: 'transparent',
                   color: '#FFFFFF',
                   cursor: 'pointer',
-                  outline: 'none',
                   transition: 'background-color 0.2s, border-color 0.2s',
                 }}
                 onMouseEnter={(e) => {
@@ -147,7 +148,14 @@ export default function Header({ currentScreenIndex, totalScreens, stageNumber, 
         </header>
 
         {/* Progress bar */}
-        <div style={{ height: 4, backgroundColor: '#CCFBF1', width: '100%' }}>
+        <div
+          style={{ height: 4, backgroundColor: '#CCFBF1', width: '100%' }}
+          role="progressbar"
+          aria-valuenow={Math.round(progress)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label={`Simulation progress: ${Math.round(progress)}%`}
+        >
           <div
             style={{
               height: '100%',

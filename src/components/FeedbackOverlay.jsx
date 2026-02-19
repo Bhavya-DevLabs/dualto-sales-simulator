@@ -1,8 +1,26 @@
+import { useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function FeedbackOverlay({ feedbackState, message, onDismiss }) {
   const isVisible = feedbackState === 'correct' || feedbackState === 'wrong';
   const isCorrect = feedbackState === 'correct';
+
+  // Escape key to dismiss wrong-answer overlay
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key === 'Escape' && !isCorrect && isVisible) {
+        onDismiss();
+      }
+    },
+    [isCorrect, isVisible, onDismiss]
+  );
+
+  useEffect(() => {
+    if (isVisible && !isCorrect) {
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [isVisible, isCorrect, handleKeyDown]);
 
   return (
     <AnimatePresence>

@@ -12,6 +12,7 @@ export default function OptionsGrid({
 
   return (
     <div
+      className="options-grid-responsive"
       style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',

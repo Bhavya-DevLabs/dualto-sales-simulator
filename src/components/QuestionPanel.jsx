@@ -89,6 +89,7 @@ export default function QuestionPanel({
           lineHeight: 1.5,
           marginBottom: multiSelect ? 8 : 32,
           maxWidth: 680,
+          whiteSpace: 'pre-line',
         }}
       >
         {question}

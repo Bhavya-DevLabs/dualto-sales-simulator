@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Header from './Header';
 import CharacterFigure from './CharacterFigure';
@@ -44,6 +45,17 @@ export default function SimulatorShell({ user, onSignOut }) {
     currentScreen &&
     (currentScreen.type === 'intro' || currentScreen.type === 'completion');
 
+  // Scroll to top and update page title on screen change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const base = 'DUALTO Onboarding Simulator';
+    if (stageInfo) {
+      document.title = `Stage ${stageInfo.number}: ${stageInfo.title} — ${base}`;
+    } else {
+      document.title = base;
+    }
+  }, [currentScreenIndex, stageInfo]);
+
   const feedbackMessage = currentScreen?.feedback
     ? feedbackState === 'correct'
       ? currentScreen.feedback.correct
@@ -69,7 +81,7 @@ export default function SimulatorShell({ user, onSignOut }) {
       />
 
       {/* Main content — offset for header (72px) + progress bar (4px) */}
-      <main style={{ paddingTop: 76, paddingLeft: 40, paddingRight: 40 }}>
+      <main id="main-content" style={{ paddingTop: 76, paddingLeft: 40, paddingRight: 40 }}>
         <AnimatePresence mode="wait">
           <motion.div
             key={currentScreen?.id || 'empty'}
@@ -96,6 +108,8 @@ export default function SimulatorShell({ user, onSignOut }) {
       <CharacterFigure
         character={currentScreen?.character || null}
         large={isLargeChar}
+        mood={currentScreen?.characterMood || null}
+        showQuestionMark={currentScreen?.showQuestionMark || false}
       />
 
       {/* Feedback Overlay */}

@@ -1,4 +1,6 @@
+import { useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
+import { ExternalLink } from 'lucide-react';
 import QuestionPanel from '../components/QuestionPanel';
 import StageTransitionCard from '../components/StageTransitionCard';
 
@@ -98,6 +100,21 @@ export default function ScreenRenderer({
   }
 }
 
+/* ─── Hook: Enter key advances on non-question screens ─── */
+function useEnterKeyAdvance(onAdvance) {
+  const handleKey = useCallback(
+    (e) => {
+      if (e.key === 'Enter') onAdvance();
+    },
+    [onAdvance]
+  );
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [handleKey]);
+}
+
 /* ─── Pill CTA (red bg) ─── */
 function RedCTA({ label, onClick }) {
   return (
@@ -163,6 +180,7 @@ function TrophyIcon() {
 
 /* ─── INTRO SCREEN ─── */
 function IntroScreen({ screen, onAdvance }) {
+  useEnterKeyAdvance(onAdvance);
   const bodyArray = Array.isArray(screen.body) ? screen.body : [screen.body];
 
   return (
@@ -248,6 +266,7 @@ function IntroScreen({ screen, onAdvance }) {
 
 /* ─── INFO SCREEN ─── */
 function InfoScreen({ screen, onAdvance }) {
+  useEnterKeyAdvance(onAdvance);
   const bodyArray = Array.isArray(screen.body) ? screen.body : [screen.body];
 
   return (
@@ -391,11 +410,72 @@ function InfoScreen({ screen, onAdvance }) {
               }}
             >
               {screen.externalLink.label}
+              <ExternalLink size={15} strokeWidth={2} style={{ marginLeft: 6, verticalAlign: 'middle' }} />
             </a>
           )}
           <RedCTA label={screen.ctaLabel || 'Continue'} onClick={onAdvance} />
         </div>
       </motion.div>
+    </div>
+  );
+}
+
+/* ─── Confetti particles for completion ─── */
+const CONFETTI_COLORS = ['#CA001B', '#1B2B5E', '#22C55E', '#0891B2', '#FFFFFF', '#F59E0B'];
+
+function ConfettiParticle({ index }) {
+  const color = CONFETTI_COLORS[index % CONFETTI_COLORS.length];
+  const left = Math.random() * 100;
+  const delay = Math.random() * 1.2;
+  const duration = 2.5 + Math.random() * 2;
+  const size = 6 + Math.random() * 6;
+  const rotate = Math.random() * 360;
+  const isCircle = index % 3 === 0;
+
+  return (
+    <motion.div
+      style={{
+        position: 'absolute',
+        top: -20,
+        left: `${left}%`,
+        width: size,
+        height: isCircle ? size : size * 2.5,
+        backgroundColor: color,
+        borderRadius: isCircle ? '50%' : 2,
+        zIndex: 0,
+        pointerEvents: 'none',
+      }}
+      initial={{ opacity: 1, y: 0, rotate, scale: 0 }}
+      animate={{
+        opacity: [1, 1, 0],
+        y: [0, window.innerHeight * 0.85],
+        rotate: rotate + 360 + Math.random() * 180,
+        x: [0, (Math.random() - 0.5) * 200],
+        scale: [0, 1, 0.6],
+      }}
+      transition={{
+        duration,
+        delay: 0.2 + delay,
+        ease: 'easeOut',
+      }}
+    />
+  );
+}
+
+function ConfettiBurst() {
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        overflow: 'hidden',
+        pointerEvents: 'none',
+        zIndex: 0,
+      }}
+    >
+      {Array.from({ length: 40 }).map((_, i) => (
+        <ConfettiParticle key={i} index={i} />
+      ))}
     </div>
   );
 }
@@ -407,6 +487,7 @@ function CompletionScreen({ screen, onRestart }) {
   return (
     <div
       style={{
+        position: 'relative',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -415,14 +496,23 @@ function CompletionScreen({ screen, onRestart }) {
         marginLeft: -40,
         marginRight: -40,
         padding: '60px 24px',
+        overflow: 'hidden',
       }}
     >
-      <div style={{ textAlign: 'center', maxWidth: 580 }}>
+      <ConfettiBurst />
+
+      <div style={{ textAlign: 'center', maxWidth: 580, position: 'relative', zIndex: 1 }}>
+        {/* Trophy with pulse glow */}
         <motion.div
-          style={{ lineHeight: 1, marginBottom: 24, display: 'inline-block' }}
+          style={{
+            lineHeight: 1,
+            marginBottom: 24,
+            display: 'inline-block',
+            filter: 'drop-shadow(0 0 20px rgba(34, 197, 94, 0.4))',
+          }}
           initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          animate={{ opacity: 1, scale: [0.5, 1.15, 1] }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
           <TrophyIcon />
         </motion.div>
@@ -478,7 +568,6 @@ function CompletionScreen({ screen, onRestart }) {
             borderRadius: 10,
             border: 'none',
             cursor: 'pointer',
-            outline: 'none',
             boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
           }}
           initial={{ opacity: 0, y: 20 }}

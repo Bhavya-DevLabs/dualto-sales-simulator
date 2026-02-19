@@ -38,11 +38,49 @@ body {
   background-color: #EEF2FF;
 }
 
-/* Accessible focus rings */
+/* Accessible focus rings — override inline outline:none */
 :focus-visible {
-  outline: 3px solid #0891B2;
+  outline: 3px solid #0891B2 !important;
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* Skip link — visually hidden until focused */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 9999;
+  padding: 12px 24px;
+  background: #1B2B5E;
+  color: #FFFFFF;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Responsive single-column grid for small screens */
+@media (max-width: 540px) {
+  .options-grid-responsive {
+    grid-template-columns: 1fr !important;
+  }
+  .options-grid-responsive > * {
+    grid-column: span 1 !important;
+  }
+  .header-pills-responsive {
+    display: none !important;
+  }
+}
+
+/* Smooth scroll-to-top on navigation */
+html {
+  scroll-behavior: smooth;
 }
 
 /* Reduced motion support */
