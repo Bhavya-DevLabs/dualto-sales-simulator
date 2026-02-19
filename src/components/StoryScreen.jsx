@@ -44,6 +44,30 @@ export default function StoryScreen({
       }}
     >
       <div style={{ textAlign: 'center', maxWidth: 680, width: '100%' }}>
+        {/* Editorial label */}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            marginBottom: 24,
+          }}
+        >
+          <div style={{ width: 32, height: 2, backgroundColor: '#CA001B', marginBottom: 8 }} />
+          <span
+            style={{
+              color: '#CA001B',
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 700,
+              fontSize: 11,
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+            }}
+          >
+            MISSION BRIEF
+          </span>
+        </div>
+
         {/* Lines — revealed one at a time */}
         <div
           style={{
