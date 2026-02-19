@@ -54,7 +54,7 @@ export default function SimulatorShell({ user, onSignOut }) {
     <div
       style={{
         minHeight: '100vh',
-        backgroundColor: '#F0F2F8',
+        backgroundColor: '#EEF2FF',
         fontFamily: "'Noto Sans', sans-serif",
       }}
     >

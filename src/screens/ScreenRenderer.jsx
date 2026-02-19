@@ -258,7 +258,7 @@ function InfoScreen({ screen, onAdvance }) {
         justifyContent: 'center',
         minHeight: 'calc(100vh - 76px)',
         padding: '40px 20px',
-        backgroundColor: '#F0F2F8',
+        backgroundColor: '#EEF2FF',
         marginLeft: -40,
         marginRight: -40,
       }}
@@ -280,20 +280,27 @@ function InfoScreen({ screen, onAdvance }) {
         {/* Micro label */}
         <div
           style={{
-            display: 'inline-block',
-            backgroundColor: '#1B2B5E',
-            color: '#FFFFFF',
-            fontFamily: "'Montserrat', sans-serif",
-            fontWeight: 600,
-            fontSize: 11,
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase',
-            padding: '6px 18px',
-            borderRadius: 9999,
-            marginBottom: 28,
+            display: 'flex',
+            justifyContent: 'center',
+            width: '100%',
+            marginBottom: 16,
           }}
         >
-          MISSION BRIEF
+          <div
+            style={{
+              backgroundColor: '#1B2B5E',
+              color: '#FFFFFF',
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 600,
+              fontSize: 11,
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+              padding: '6px 18px',
+              borderRadius: 9999,
+            }}
+          >
+            MISSION BRIEF
+          </div>
         </div>
 
         {/* Body paragraphs */}

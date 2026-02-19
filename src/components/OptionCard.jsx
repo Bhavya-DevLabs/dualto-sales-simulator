@@ -98,7 +98,7 @@ export default function OptionCard({
           width: 40,
           height: 40,
           borderRadius: '50%',
-          backgroundColor: isSelected ? '#CFFAFE' : '#F0F2F8',
+          backgroundColor: isSelected ? '#CFFAFE' : '#EEF2FF',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',

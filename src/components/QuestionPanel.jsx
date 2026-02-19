@@ -26,19 +26,27 @@ export default function QuestionPanel({
       {/* Micro-label pill */}
       <div
         style={{
-          backgroundColor: '#1B2B5E',
-          color: '#FFFFFF',
-          fontFamily: "'Figtree', sans-serif",
-          fontWeight: 600,
-          fontSize: 11,
-          letterSpacing: '0.15em',
-          textTransform: 'uppercase',
-          padding: '6px 18px',
-          borderRadius: 9999,
-          marginBottom: 20,
+          display: 'flex',
+          justifyContent: 'center',
+          width: '100%',
+          marginBottom: 16,
         }}
       >
-        STEP CHECK
+        <div
+          style={{
+            backgroundColor: '#1B2B5E',
+            color: '#FFFFFF',
+            fontFamily: "'Montserrat', sans-serif",
+            fontWeight: 600,
+            fontSize: 11,
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            padding: '6px 18px',
+            borderRadius: 9999,
+          }}
+        >
+          STEP CHECK
+        </div>
       </div>
 
       {/* Pre-text narrative (italic, muted, above the question) */}
