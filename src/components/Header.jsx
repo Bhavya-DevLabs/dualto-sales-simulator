@@ -31,15 +31,16 @@ export default function Header({ currentScreenIndex, totalScreens, stageNumber, 
             justifyContent: 'space-between',
             paddingLeft: 32,
             paddingRight: 32,
+            position: 'relative',
           }}
         >
-          {/* Left: brand + stage */}
-          <div>
+          {/* Left: brand */}
+          <div style={{ zIndex: 2 }}>
             <div
               style={{
-                fontFamily: "'Figtree', sans-serif",
-                fontWeight: 700,
-                fontSize: 22,
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 800,
+                fontSize: 20,
                 color: '#FFFFFF',
                 lineHeight: 1.2,
                 letterSpacing: '0.04em',
@@ -47,25 +48,31 @@ export default function Header({ currentScreenIndex, totalScreens, stageNumber, 
             >
               DUALTO
             </div>
-            {stageName && (
-              <div
-                style={{
-                  fontFamily: "'Noto Sans', sans-serif",
-                  fontWeight: 500,
-                  fontSize: 13,
-                  color: 'rgba(255,255,255,0.75)',
-                  lineHeight: 1.2,
-                  marginTop: 2,
-                }}
-              >
-                Stage {stageNumber} &middot; {stageName}
-              </div>
-            )}
           </div>
+
+          {/* Center: stage name (absolute centered) */}
+          {stageName && (
+            <div
+              style={{
+                position: 'absolute',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 500,
+                fontSize: 13,
+                color: 'rgba(255,255,255,0.85)',
+                lineHeight: 1.2,
+                whiteSpace: 'nowrap',
+                zIndex: 1,
+              }}
+            >
+              Stage {stageNumber} &middot; {stageName}
+            </div>
+          )}
 
           {/* Right: user pills + sign out */}
           {user && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, zIndex: 2 }}>
               {/* Region pill */}
               <div
                 style={{
@@ -74,7 +81,7 @@ export default function Header({ currentScreenIndex, totalScreens, stageNumber, 
                   gap: 6,
                   backgroundColor: '#FFFFFF',
                   color: '#CA001B',
-                  fontFamily: "'Noto Sans', sans-serif",
+                  fontFamily: "'Montserrat', sans-serif",
                   fontWeight: 700,
                   fontSize: 13,
                   padding: '6px 16px',
@@ -93,7 +100,7 @@ export default function Header({ currentScreenIndex, totalScreens, stageNumber, 
                   gap: 6,
                   backgroundColor: '#FFFFFF',
                   color: '#CA001B',
-                  fontFamily: "'Noto Sans', sans-serif",
+                  fontFamily: "'Montserrat', sans-serif",
                   fontWeight: 700,
                   fontSize: 13,
                   padding: '6px 16px',
@@ -186,7 +193,7 @@ export default function Header({ currentScreenIndex, totalScreens, stageNumber, 
           >
             <p
               style={{
-                fontFamily: "'Figtree', sans-serif",
+                fontFamily: "'Montserrat', sans-serif",
                 fontWeight: 700,
                 fontSize: 20,
                 color: '#134E4A',
@@ -197,7 +204,7 @@ export default function Header({ currentScreenIndex, totalScreens, stageNumber, 
             </p>
             <p
               style={{
-                fontFamily: "'Noto Sans', sans-serif",
+                fontFamily: "'Montserrat', sans-serif",
                 fontWeight: 400,
                 fontSize: 15,
                 color: '#4A5568',
@@ -211,7 +218,7 @@ export default function Header({ currentScreenIndex, totalScreens, stageNumber, 
               <button
                 onClick={handleCancel}
                 style={{
-                  fontFamily: "'Figtree', sans-serif",
+                  fontFamily: "'Montserrat', sans-serif",
                   fontWeight: 600,
                   fontSize: 14,
                   padding: '12px 32px',
@@ -228,7 +235,7 @@ export default function Header({ currentScreenIndex, totalScreens, stageNumber, 
               <button
                 onClick={handleConfirm}
                 style={{
-                  fontFamily: "'Figtree', sans-serif",
+                  fontFamily: "'Montserrat', sans-serif",
                   fontWeight: 600,
                   fontSize: 14,
                   padding: '12px 32px',

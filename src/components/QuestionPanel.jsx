@@ -26,7 +26,7 @@ export default function QuestionPanel({
       {/* Micro-label pill */}
       <div
         style={{
-          backgroundColor: '#0891B2',
+          backgroundColor: '#1B2B5E',
           color: '#FFFFFF',
           fontFamily: "'Figtree', sans-serif",
           fontWeight: 600,

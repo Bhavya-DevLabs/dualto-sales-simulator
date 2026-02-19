@@ -53,7 +53,7 @@ export const SCRIPT = [
     type: "transition",
     stageNumber: 1,
     stageTitle: "Clinical Evaluation +\nHospital IT Review",
-    preLabel: "Time to start with",
+    preLabel: "It's time to start with",
     ctaLabel: "Let's Go"
   },
 
@@ -255,7 +255,7 @@ export const SCRIPT = [
     type: "transition",
     stageNumber: 2,
     stageTitle: "Connectivity Readiness",
-    preLabel: "Now it is time to start with",
+    preLabel: "Now, it's time to start with",
     ctaLabel: "Let's Go"
   },
 

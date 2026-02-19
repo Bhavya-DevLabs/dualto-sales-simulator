@@ -24,7 +24,7 @@ export default function ScreenRenderer({
       >
         <p
           style={{
-            fontFamily: "'Noto Sans', sans-serif",
+            fontFamily: "'Montserrat', sans-serif",
             fontWeight: 500,
             fontSize: 18,
             color: '#9CA3AF',
@@ -87,7 +87,7 @@ export default function ScreenRenderer({
         >
           <p
             style={{
-              fontFamily: "'Noto Sans', sans-serif",
+              fontFamily: "'Montserrat', sans-serif",
               color: '#9CA3AF',
             }}
           >
@@ -106,47 +106,17 @@ function RedCTA({ label, onClick }) {
       style={{
         backgroundColor: '#CA001B',
         color: '#FFFFFF',
-        fontFamily: "'Figtree', sans-serif",
+        fontFamily: "'Montserrat', sans-serif",
         fontWeight: 700,
         fontSize: 15,
         padding: '14px 48px',
-        borderRadius: 9999,
+        borderRadius: 10,
         border: 'none',
         cursor: 'pointer',
         outline: 'none',
         boxShadow: '0 4px 16px rgba(202, 0, 27, 0.3)',
-        letterSpacing: '0.01em',
       }}
-      whileHover={{ scale: 1.04 }}
-      whileTap={{ scale: 0.97 }}
-    >
-      {label}
-    </motion.button>
-  );
-}
-
-/* ─── Pill CTA (white bg, blue text) ─── */
-function WhiteCTA({ label, onClick, delay = 0 }) {
-  return (
-    <motion.button
-      onClick={onClick}
-      style={{
-        backgroundColor: '#FFFFFF',
-        color: '#1B2B5E',
-        fontFamily: "'Figtree', sans-serif",
-        fontWeight: 700,
-        fontSize: 16,
-        padding: '14px 48px',
-        borderRadius: 9999,
-        border: 'none',
-        cursor: 'pointer',
-        outline: 'none',
-        boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-      }}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay }}
-      whileHover={{ scale: 1.04, boxShadow: '0 6px 28px rgba(0,0,0,0.2)' }}
+      whileHover={{ scale: 1.02, backgroundColor: '#A8001A' }}
       whileTap={{ scale: 0.97 }}
     >
       {label}
@@ -202,59 +172,75 @@ function IntroScreen({ screen, onAdvance }) {
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: 'calc(100vh - 76px)',
-        backgroundColor: '#1B2B5E',
+        background: 'linear-gradient(135deg, #1B2B5E 0%, #6B1535 50%, #CA001B 100%)',
         marginLeft: -40,
         marginRight: -40,
         padding: '60px 24px',
       }}
     >
-      <div style={{ textAlign: 'center', maxWidth: 580 }}>
+      <div style={{ textAlign: 'center', maxWidth: 620 }}>
         {screen.heading && (
           <motion.h1
             style={{
-              fontFamily: "'Figtree', sans-serif",
-              fontWeight: 700,
-              fontSize: 56,
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 800,
+              fontSize: 52,
               color: '#FFFFFF',
-              marginBottom: 32,
+              marginBottom: 24,
               lineHeight: 1.1,
             }}
-            initial={{ opacity: 0, y: 36 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
           >
             {screen.heading}
           </motion.h1>
         )}
 
-        <motion.div
-          style={{ marginBottom: 44 }}
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.25 }}
-        >
+        <div style={{ marginBottom: 40 }}>
           {bodyArray.map((line, i) => (
-            <p
+            <motion.p
               key={i}
               style={{
-                fontFamily: "'Noto Sans', sans-serif",
-                fontWeight: 400,
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 500,
                 fontSize: 18,
-                color: 'rgba(255,255,255,0.8)',
-                lineHeight: 1.8,
-                marginBottom: i < bodyArray.length - 1 ? 10 : 0,
+                color: 'rgba(255,255,255,0.85)',
+                lineHeight: 1.9,
+                marginBottom: i < bodyArray.length - 1 ? 4 : 0,
               }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.2 + i * 0.08, ease: 'easeOut' }}
             >
               {line}
-            </p>
+            </motion.p>
           ))}
-        </motion.div>
+        </div>
 
-        <WhiteCTA
-          label={screen.ctaLabel || 'Continue'}
+        <motion.button
           onClick={onAdvance}
-          delay={0.4}
-        />
+          style={{
+            backgroundColor: '#FFFFFF',
+            color: '#CA001B',
+            fontFamily: "'Montserrat', sans-serif",
+            fontWeight: 700,
+            fontSize: 15,
+            padding: '14px 48px',
+            borderRadius: 10,
+            border: 'none',
+            cursor: 'pointer',
+            outline: 'none',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+          }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.4, ease: 'easeOut' }}
+          whileHover={{ scale: 1.02, backgroundColor: '#F5F5F5' }}
+          whileTap={{ scale: 0.97 }}
+        >
+          {screen.ctaLabel || 'Continue'}
+        </motion.button>
       </div>
     </div>
   );
@@ -272,17 +258,20 @@ function InfoScreen({ screen, onAdvance }) {
         justifyContent: 'center',
         minHeight: 'calc(100vh - 76px)',
         padding: '40px 20px',
+        backgroundColor: '#F0F2F8',
+        marginLeft: -40,
+        marginRight: -40,
       }}
     >
       <motion.div
         style={{
           backgroundColor: '#FFFFFF',
-          borderRadius: 24,
-          padding: '48px',
-          maxWidth: 680,
+          borderRadius: 20,
+          padding: '40px 48px',
+          maxWidth: 720,
           width: '100%',
           textAlign: 'center',
-          boxShadow: '0 8px 32px rgba(19, 78, 74, 0.10)',
+          boxShadow: '0 4px 24px rgba(27, 43, 94, 0.10)',
         }}
         initial={{ opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}
@@ -292,9 +281,9 @@ function InfoScreen({ screen, onAdvance }) {
         <div
           style={{
             display: 'inline-block',
-            backgroundColor: '#0891B2',
+            backgroundColor: '#1B2B5E',
             color: '#FFFFFF',
-            fontFamily: "'Figtree', sans-serif",
+            fontFamily: "'Montserrat', sans-serif",
             fontWeight: 600,
             fontSize: 11,
             letterSpacing: '0.15em',
@@ -313,11 +302,12 @@ function InfoScreen({ screen, onAdvance }) {
             <p
               key={i}
               style={{
-                fontFamily: "'Noto Sans', sans-serif",
+                fontFamily: "'Montserrat', sans-serif",
                 fontWeight: 500,
                 fontSize: 17,
                 color: '#134E4A',
                 lineHeight: 1.8,
+                textAlign: 'center',
                 marginBottom: i < bodyArray.length - 1 ? 18 : 0,
               }}
             >
@@ -342,14 +332,14 @@ function InfoScreen({ screen, onAdvance }) {
                 key={name}
                 style={{
                   display: 'inline-block',
-                  backgroundColor: '#F0FDFA',
-                  color: '#0891B2',
-                  fontFamily: "'Noto Sans', sans-serif",
+                  backgroundColor: '#EEF1F8',
+                  color: '#1B2B5E',
+                  fontFamily: "'Montserrat', sans-serif",
                   fontWeight: 600,
                   fontSize: 13,
                   padding: '8px 18px',
                   borderRadius: 9999,
-                  border: '1.5px solid #CCFBF1',
+                  border: '1px solid #C5CDE8',
                 }}
               >
                 {name}
@@ -375,22 +365,22 @@ function InfoScreen({ screen, onAdvance }) {
               style={{
                 display: 'inline-block',
                 padding: '12px 36px',
-                borderRadius: 9999,
-                fontFamily: "'Figtree', sans-serif",
+                borderRadius: 10,
+                fontFamily: "'Montserrat', sans-serif",
                 fontWeight: 600,
                 fontSize: 15,
-                color: '#0891B2',
-                border: '2px solid #0891B2',
+                color: '#1B2B5E',
+                border: '2px solid #1B2B5E',
                 textDecoration: 'none',
                 transition: 'all 0.2s ease',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#0891B2';
+                e.currentTarget.style.backgroundColor = '#1B2B5E';
                 e.currentTarget.style.color = '#FFFFFF';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.color = '#0891B2';
+                e.currentTarget.style.color = '#1B2B5E';
               }}
             >
               {screen.externalLink.label}
@@ -414,7 +404,7 @@ function CompletionScreen({ screen, onRestart }) {
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: 'calc(100vh - 76px)',
-        backgroundColor: '#1B2B5E',
+        background: 'linear-gradient(135deg, #1B2B5E 0%, #6B1535 50%, #CA001B 100%)',
         marginLeft: -40,
         marginRight: -40,
         padding: '60px 24px',
@@ -432,8 +422,8 @@ function CompletionScreen({ screen, onRestart }) {
 
         <motion.h1
           style={{
-            fontFamily: "'Figtree', sans-serif",
-            fontWeight: 700,
+            fontFamily: "'Montserrat', sans-serif",
+            fontWeight: 800,
             fontSize: 48,
             color: '#FFFFFF',
             marginBottom: 28,
@@ -456,10 +446,10 @@ function CompletionScreen({ screen, onRestart }) {
             <p
               key={i}
               style={{
-                fontFamily: "'Noto Sans', sans-serif",
-                fontWeight: 400,
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 500,
                 fontSize: 18,
-                color: 'rgba(255,255,255,0.8)',
+                color: 'rgba(255,255,255,0.85)',
                 lineHeight: 1.7,
                 marginBottom: i < bodyArray.length - 1 ? 12 : 0,
               }}
@@ -469,7 +459,29 @@ function CompletionScreen({ screen, onRestart }) {
           ))}
         </motion.div>
 
-        <WhiteCTA label="Restart Simulation" onClick={onRestart} delay={0.5} />
+        <motion.button
+          onClick={onRestart}
+          style={{
+            backgroundColor: '#FFFFFF',
+            color: '#CA001B',
+            fontFamily: "'Montserrat', sans-serif",
+            fontWeight: 700,
+            fontSize: 15,
+            padding: '14px 48px',
+            borderRadius: 10,
+            border: 'none',
+            cursor: 'pointer',
+            outline: 'none',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+          }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.5, ease: 'easeOut' }}
+          whileHover={{ scale: 1.02, backgroundColor: '#F5F5F5' }}
+          whileTap={{ scale: 0.97 }}
+        >
+          Restart Simulation
+        </motion.button>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ function PersonSVG({ color, width = 90, height = 225 }) {
       xmlns="http://www.w3.org/2000/svg"
     >
       {/* Shadow */}
-      <ellipse cx="60" cy="290" rx="30" ry="6" fill={color} opacity="0.15" />
+      <ellipse cx="60" cy="290" rx="30" ry="6" fill={color} opacity="0.18" />
       {/* Head */}
       <circle cx="60" cy="36" r="26" fill={color} />
       {/* Neck */}
@@ -25,22 +25,22 @@ function PersonSVG({ color, width = 90, height = 225 }) {
       <path
         d="M24 86 C16 88, 6 130, 12 158 C16 162, 24 156, 22 148 L28 96"
         fill={color}
-        opacity="0.85"
+        opacity="0.9"
       />
       {/* Right Arm */}
       <path
         d="M96 86 C104 88, 114 130, 108 158 C104 162, 96 156, 98 148 L92 96"
         fill={color}
-        opacity="0.85"
+        opacity="0.9"
       />
       {/* Left Leg */}
       <path d="M38 185 L34 268 C34 276, 54 276, 52 268 L50 185" fill={color} />
       {/* Right Leg */}
       <path d="M70 185 L68 268 C68 276, 88 276, 86 268 L82 185" fill={color} />
       {/* Left Shoe */}
-      <ellipse cx="42" cy="274" rx="14" ry="7" fill={color} opacity="0.75" />
+      <ellipse cx="42" cy="274" rx="14" ry="7" fill={color} opacity="0.85" />
       {/* Right Shoe */}
-      <ellipse cx="78" cy="274" rx="14" ry="7" fill={color} opacity="0.75" />
+      <ellipse cx="78" cy="274" rx="14" ry="7" fill={color} opacity="0.85" />
     </svg>
   );
 }
@@ -52,8 +52,8 @@ export default function CharacterFigure({ character, large = false }) {
   if (!charData) return null;
 
   const isLeft = character.side === 'left';
-  const svgW = large ? 135 : 90;
-  const svgH = large ? 340 : 225;
+  const svgW = large ? 112 : 90;
+  const svgH = large ? 280 : 225;
 
   return (
     <AnimatePresence mode="wait">
@@ -84,20 +84,6 @@ export default function CharacterFigure({ character, large = false }) {
             width={svgW}
             height={svgH}
           />
-          <p
-            style={{
-              textAlign: 'center',
-              fontFamily: "'Noto Sans', sans-serif",
-              fontWeight: 600,
-              fontSize: large ? 12 : 10,
-              color: charData.placeholderColor,
-              marginTop: 4,
-              letterSpacing: '0.06em',
-              textTransform: 'uppercase',
-            }}
-          >
-            {charData.name}
-          </p>
         </motion.div>
       </motion.div>
     </AnimatePresence>
