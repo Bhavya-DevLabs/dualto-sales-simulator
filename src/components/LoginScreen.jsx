@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Play } from 'lucide-react';
 
-const REGIONS = ['North', 'South', 'East', 'West', 'Central'];
+const REGIONS = ['North', 'South', 'East', 'West'];
 
 export default function LoginScreen({ onLogin }) {
   const [name, setName] = useState('');

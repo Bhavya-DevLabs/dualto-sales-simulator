@@ -45,24 +45,6 @@ export default function StageTransitionCard({
           </motion.p>
         )}
 
-        {/* NOW ENTERING */}
-        <motion.p
-          style={{
-            fontFamily: "'Montserrat', sans-serif",
-            fontWeight: 600,
-            fontSize: 12,
-            letterSpacing: '0.25em',
-            textTransform: 'uppercase',
-            color: 'rgba(255,255,255,0.55)',
-            marginBottom: 20,
-          }}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: 0.2, ease: 'easeOut' }}
-        >
-          NOW ENTERING
-        </motion.p>
-
         {/* STAGE X */}
         <motion.h1
           style={{

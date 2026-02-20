@@ -1,8 +1,18 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import QuestionPanel from '../components/QuestionPanel';
 import StageTransitionCard from '../components/StageTransitionCard';
 import StoryScreen from '../components/StoryScreen';
+
+/** Fisher-Yates shuffle (returns a new array) */
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 export default function ScreenRenderer({
   screen,
@@ -18,9 +28,15 @@ export default function ScreenRenderer({
   // show story first, then the question.
   const [storyComplete, setStoryComplete] = useState(false);
 
-  // Reset story phase whenever the screen changes
+  // Shuffle options once per question screen (Fisher-Yates)
+  const [shuffledOptions, setShuffledOptions] = useState([]);
+
+  // Reset story phase and shuffle options whenever the screen changes
   useEffect(() => {
     setStoryComplete(false);
+    if (screen?.type === 'question' && screen.options) {
+      setShuffledOptions(shuffleArray(screen.options));
+    }
   }, [screen?.id]);
 
   if (!screen) {
@@ -97,7 +113,7 @@ export default function ScreenRenderer({
         >
           <QuestionPanel
             question={screen.question}
-            options={screen.options}
+            options={shuffledOptions}
             multiSelect={screen.multiSelect}
             selectedOptions={selectedOptions}
             inputLocked={inputLocked}

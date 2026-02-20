@@ -30,8 +30,8 @@ export const SCRIPT = [
     ],
     correctAnswer: ["b"],
     feedback: {
-      correct: "Correct! Clinical Evaluation / Hospital IT Review is always the first step.",
-      wrong: "Not quite — think about what must happen before any technical work begins."
+      correct: "Clinical Evaluation / Hospital IT Review is always the first step.",
+      wrong: "Think about what must happen before any technical work begins."
     }
   },
   {
@@ -47,7 +47,7 @@ export const SCRIPT = [
     type: "question",
     character: { side: "right", id: "sales" },
     preText: "You have successfully convinced all HCPs on DUALTO's features & benefits with multiple demonstrations across multiple departments.\n\nNow, you are stuck.\n\nWhat about connectivity & polyphonic – how do you start the discussion around it?\n\nLet's begin with identifying your key stakeholders for this step.",
-    question: "Who are the key stakeholders for the connectivity & Polyphonic Fleet discussion? (Select all that apply)",
+    question: "Who are the key stakeholders for the connectivity & Polyphonic Fleet discussion?",
     multiSelect: true,
     options: [
       { id: "a", label: "Biomedical team" },
@@ -58,7 +58,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["a", "b"],
     feedback: {
-      correct: "Correct! The Biomedical team and IT Lead are your primary stakeholders for connectivity discussions.",
+      correct: "The Biomedical team and IT Lead are your primary stakeholders for connectivity discussions.",
       wrong: "Think about who would be most directly involved in a technical connectivity discussion."
     }
   },
@@ -67,7 +67,7 @@ export const SCRIPT = [
     type: "question",
     character: { side: "left", id: "sales" },
     characterMood: "thinking",
-    question: "Now you are planning to do a preliminary discussion around Polyphonic Fleet & connectivity with the BME & IT Team.\nWhat resources will you use for your discussion? (Select all that apply)",
+    question: "Now you are planning to do a preliminary discussion around Polyphonic Fleet & connectivity with the BME & IT Team.\nWhat resources will you use for your discussion?",
     multiSelect: true,
     options: [
       { id: "a", label: "Technical Brochure" },
@@ -83,7 +83,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["a", "c", "d", "e"],
     feedback: {
-      correct: "Correct! The Technical Brochure, Connectivity Welcome Packet, Cybersecurity Whitepaper, and Privacy & Security Technical Brief are the right resources.",
+      correct: "The Technical Brochure, Connectivity Welcome Packet, Cybersecurity Whitepaper, and Privacy & Security Technical Brief are the right resources.",
       wrong: "Think about what a BME & IT team needs — technical and security documents, not clinical or surgical ones."
     }
   },
@@ -124,7 +124,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["a"],
     feedback: {
-      correct: "Correct! The DUALTO Specialist is the right first escalation point for technical product questions.",
+      correct: "The DUALTO Specialist is the right first escalation point for technical product questions.",
       wrong: "Think about who has the deepest technical knowledge of the DUALTO device itself."
     }
   },
@@ -132,7 +132,7 @@ export const SCRIPT = [
     id: "screen_09",
     type: "question",
     character: null,
-    question: "The DUALTO specialist is not 100% sure how to answer the question.\nThe specialist needs additional support. Who will they reach out to?",
+    question: "The DUALTO specialist is not 100% sure on how to answer the question. The specialist needs additional support. Who will they reach out to?",
     multiSelect: false,
     options: [
       { id: "a", label: "Write an email to APAC Technical Team" },
@@ -142,7 +142,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["a"],
     feedback: {
-      correct: "Correct! Writing an email to the APAC Technical Team is the proper escalation channel.",
+      correct: "Writing an email to the APAC Technical Team is the proper escalation channel.",
       wrong: "There is a specific formal escalation process for technical queries beyond local expertise."
     }
   },
@@ -150,7 +150,7 @@ export const SCRIPT = [
     id: "screen_10",
     type: "question",
     character: null,
-    question: "And what details must you include inside the email body? (Select all that apply)",
+    question: "And what details must you include inside the email body?",
     multiSelect: true,
     options: [
       { id: "a", label: "Hospital name" },
@@ -164,7 +164,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["a", "b", "c", "d", "e"],
     feedback: {
-      correct: "Perfect! Hospital name, Unique Hospital code, Contact name, Contact details, and List of questions are all required.",
+      correct: "Hospital name, Unique Hospital code, Contact name, Contact details, and List of questions are all required.",
       wrong: "Focus on what the APAC team needs to identify the hospital and understand the query."
     }
   },
@@ -182,7 +182,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["a"],
     feedback: {
-      correct: "Correct! TechSupportAPAC@its.jnj.com is the dedicated APAC technical support inbox.",
+      correct: "TechSupportAPAC@its.jnj.com is the dedicated APAC technical support inbox.",
       wrong: "There is a specific regional technical support inbox for the APAC team — look carefully."
     }
   },
@@ -209,7 +209,7 @@ export const SCRIPT = [
     id: "screen_14",
     type: "question",
     character: null,
-    question: "You are almost two weeks away from receiving the purchase order for DUALTO. Since it is a connected device, what tasks should you accomplish before the PO is received? (Select all that apply)",
+    question: "You are almost two weeks away from receiving the purchase order for DUALTO. Since it is a connected device, what tasks should you accomplish before the PO is received?",
     multiSelect: true,
     options: [
       { id: "a", label: "Reserving a physical Ethernet port" },
@@ -219,7 +219,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["a", "b"],
     feedback: {
-      correct: "Correct! Reserving an Ethernet port and completing SSO federation must be done before the device arrives.",
+      correct: "Reserving an Ethernet port and completing SSO federation must be done before the device arrives.",
       wrong: "Think about connectivity infrastructure that needs to be ready before the device even reaches the hospital."
     }
   },
@@ -238,8 +238,8 @@ export const SCRIPT = [
     ],
     correctAnswer: ["a", "b"],
     feedback: {
-      correct: "Correct! Wired Ethernet via LAN and tethering to a connected computer are the two supported methods.",
-      wrong: "Remember — Wi-Fi is not yet activated in DUALTO. Only wired connection methods are supported."
+      correct: "Wired Ethernet via LAN and tethering to a connected computer are the two supported methods.",
+      wrong: "Wi-Fi is not yet activated in DUALTO. Only wired connection methods are supported."
     }
   },
   {
@@ -257,7 +257,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["a"],
     feedback: {
-      correct: "Correct! SSO allows users to log in using their existing hospital organisation credentials.",
+      correct: "SSO allows users to log in using their existing hospital organisation credentials.",
       wrong: "Think specifically about what SSO changes for the hospital's daily login experience."
     }
   },
@@ -284,7 +284,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["a"],
     feedback: {
-      correct: "Correct! The Federation section inside the Connectivity Welcome Packet is where SSO is enabled.",
+      correct: "The Federation section inside the Connectivity Welcome Packet is where SSO is enabled.",
       wrong: "Think about the connectivity-specific resource you discussed earlier with the IT team."
     }
   },
@@ -351,7 +351,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["a"],
     feedback: {
-      correct: "Correct! The Intake Form is what the Biomed Head needs to fill to create the Polyphonic Fleet account.",
+      correct: "The Intake Form is what the Biomed Head needs to fill to create the Polyphonic Fleet account.",
       wrong: "There is a specific named form for collecting information to set up the Polyphonic Fleet account."
     }
   },
@@ -383,7 +383,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["b"],
     feedback: {
-      correct: "Correct! The Intake Form requests credentials for 2 biomed admin users.",
+      correct: "The Intake Form requests credentials for 2 biomed admin users.",
       wrong: "Try opening the actual form and check how many admin user fields are present."
     }
   },
@@ -409,7 +409,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["a"],
     feedback: {
-      correct: "Correct! Whitelisting the MAC address with the hospital IT team is the critical next step.",
+      correct: "Whitelisting the MAC address with the hospital IT team is the critical next step.",
       wrong: "There is a specific term for allowing a device's hardware address through a network firewall."
     }
   },
@@ -437,7 +437,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["a"],
     feedback: {
-      correct: "Correct! DUALTO requires specific URLs to be whitelisted to communicate with Polyphonic Fleet.",
+      correct: "DUALTO requires specific URLs to be whitelisted to communicate with Polyphonic Fleet.",
       wrong: "DUALTO is a cloud-connected device — it must be able to reach specific web addresses to function."
     }
   },
@@ -473,7 +473,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["a"],
     feedback: {
-      correct: "Correct! Energy Module first, then Communication Module, then the User Screen.",
+      correct: "Energy Module first, then Communication Module, then the User Screen.",
       wrong: "There is a specific required assembly sequence. Refer to the installation documentation."
     }
   },
@@ -492,7 +492,7 @@ export const SCRIPT = [
     id: "screen_35",
     type: "question",
     character: null,
-    question: "The DUALTO is set up. It is time to explain customization to the hospital team.\nOut of the following, which settings can be customized? (Select all that apply)",
+    question: "The DUALTO is set up. It is time to explain customization to the hospital team.\nOut of the following, which settings can be customized?",
     multiSelect: true,
     options: [
       { id: "a", label: "System colours" },
@@ -504,7 +504,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["c", "d", "e", "f"],
     feedback: {
-      correct: "Correct! Screen brightness, System volume, Default energy settings, and Surgeon/procedure profiles are all customisable.",
+      correct: "Screen brightness, System volume, Default energy settings, and Surgeon/procedure profiles are all customisable.",
       wrong: "Not all settings are customisable on DUALTO. Focus on operational and clinical preference settings."
     }
   },
@@ -522,7 +522,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["a"],
     feedback: {
-      correct: "Correct! The ETHOVK output verification key combined with the footswitch is the required equipment.",
+      correct: "The ETHOVK output verification key combined with the footswitch is the required equipment.",
       wrong: "There is a specific verification tool designed for DUALTO energy output testing."
     }
   },
@@ -540,7 +540,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["a"],
     feedback: {
-      correct: "Correct! TechSupportAPAC@its.jnj.com is the dedicated support inbox for all post-installation issues.",
+      correct: "TechSupportAPAC@its.jnj.com is the dedicated support inbox for all post-installation issues.",
       wrong: "The hospital needs a direct technical support line — not a route through sales or marketing."
     }
   },
@@ -557,7 +557,7 @@ export const SCRIPT = [
     ],
     correctAnswer: ["a"],
     feedback: {
-      correct: "Outstanding! You've mastered the complete DUALTO onboarding journey from start to finish!",
+      correct: "You've mastered the complete DUALTO onboarding journey from start to finish!",
       wrong: "Replay the journey — each stage logically must come before the next."
     }
   },
