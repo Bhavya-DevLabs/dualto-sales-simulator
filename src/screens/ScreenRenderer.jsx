@@ -19,6 +19,7 @@ export default function ScreenRenderer({
   selectedOptions,
   feedbackState,
   inputLocked,
+  charSide,
   onSelect,
   onSubmit,
   onAdvance,

@@ -37,6 +37,7 @@ export const SCRIPT = [
   {
     id: "screen_03",
     type: "transition",
+    character: null,
     stageNumber: 1,
     stageTitle: "Clinical Evaluation +\nHospital IT Review",
     preLabel: "It's time to start with",
@@ -45,7 +46,7 @@ export const SCRIPT = [
   {
     id: "screen_04",
     type: "question",
-    character: { side: "right", id: "sales" },
+    character: null,
     preText: "You have successfully convinced all HCPs on DUALTO's features & benefits with multiple demonstrations across multiple departments.\n\nNow, you are stuck.\n\nWhat about connectivity & polyphonic – how do you start the discussion around it?\n\nLet's begin with identifying your key stakeholders for this step.",
     question: "Who are the key stakeholders for the connectivity & Polyphonic Fleet discussion?",
     multiSelect: true,
@@ -65,8 +66,7 @@ export const SCRIPT = [
   {
     id: "screen_05",
     type: "question",
-    character: { side: "left", id: "sales" },
-    characterMood: "thinking",
+    character: null,
     question: "Now you are planning to do a preliminary discussion around Polyphonic Fleet & connectivity with the BME & IT Team.\nWhat resources will you use for your discussion?",
     multiSelect: true,
     options: [
@@ -104,7 +104,6 @@ export const SCRIPT = [
     type: "info",
     character: { side: "left", id: "sales" },
     characterMood: "confused",
-    showQuestionMark: true,
     body: [
       "You have no idea how to answer the question."
     ],
@@ -200,6 +199,7 @@ export const SCRIPT = [
   {
     id: "screen_13",
     type: "transition",
+    character: null,
     stageNumber: 2,
     stageTitle: "Connectivity Readiness",
     preLabel: "Now, it's time to start with",
@@ -226,7 +226,7 @@ export const SCRIPT = [
   {
     id: "screen_15",
     type: "question",
-    character: { side: "right", id: "it" },
+    character: null,
     preText: "Since Wi-Fi capabilities are not yet activated in DUALTO, Ethernet connection is a must at the hospital.\n\nThe IT admin asks:\n\"How do I connect this to the Ethernet?\"\n\nYou explain that the 2 methods are:",
     question: "Select the 2 correct Ethernet connection methods:",
     multiSelect: true,
@@ -245,7 +245,7 @@ export const SCRIPT = [
   {
     id: "screen_16",
     type: "question",
-    character: { side: "right", id: "it" },
+    character: null,
     preText: "\"Great! Let me know once your device is available. I have reserved one Ethernet port for DUALTO in my office.\n\nYou also mentioned that SSO is recommended prior to installing DUALTO. What benefit will this have for me & my team?\"\n\nYou tell them:",
     question: "What is the key benefit of SSO?",
     multiSelect: false,
@@ -301,6 +301,7 @@ export const SCRIPT = [
   {
     id: "screen_20",
     type: "transition",
+    character: null,
     stageNumber: 3,
     stageTitle: "Polyphonic Preparation",
     preLabel: "Congratulations, the PO has been received!\nNow it's time to start with",
@@ -309,7 +310,7 @@ export const SCRIPT = [
   {
     id: "screen_21",
     type: "info",
-    character: { side: "right", id: "sales" },
+    character: { side: "right", id: "purchase" },
     body: [
       "The purchase team says:",
       "\"Congratulations, here is the PO for DUALTO Energy system. We need the installation to begin asap.\""
@@ -340,7 +341,7 @@ export const SCRIPT = [
   {
     id: "screen_24",
     type: "question",
-    character: { side: "right", id: "sales" },
+    character: null,
     question: "\"I need you to fill out the ____\"",
     multiSelect: false,
     options: [
@@ -390,6 +391,7 @@ export const SCRIPT = [
   {
     id: "screen_27",
     type: "transition",
+    character: null,
     stageNumber: 4,
     stageTitle: "Activation & Go-Live",
     preLabel: "Great work.\nYou just heard from the supply chain team that the DUALTO unit is shipped for India. You have the MAC addresses for the communications module.\nNext, we move onto",
@@ -416,7 +418,7 @@ export const SCRIPT = [
   {
     id: "screen_29",
     type: "info",
-    character: null,
+    character: { side: "right", id: "it" },
     body: [
       "Quick information: What are MAC addresses & why do we need to whitelist them?",
       "A MAC (Media Access Control) address is a unique hardware identifier assigned to the DUALTO communications module.",
@@ -427,7 +429,7 @@ export const SCRIPT = [
   {
     id: "screen_30",
     type: "question",
-    character: { side: "right", id: "it" },
+    character: null,
     preText: "The IT lead asks:\n\"Is that all? Just an update — the Apollo internet network usually blocks a lot of web pages & websites. Are there any additional URLs (webpage addresses) that you want me to whitelist?\"\n\nWhat do you say?",
     question: "Are there additional URLs to whitelist?",
     multiSelect: false,
@@ -454,6 +456,7 @@ export const SCRIPT = [
   {
     id: "screen_32",
     type: "transition",
+    character: null,
     stageNumber: 5,
     stageTitle: "Device Installation",
     preLabel: "Happy Install Day!\nThe DUALTO has finally reached Apollo Hospital, Delhi.\nIt is time to start with",
@@ -480,7 +483,7 @@ export const SCRIPT = [
   {
     id: "screen_34",
     type: "info",
-    character: null,
+    character: { side: "left", id: "biomed" },
     body: [
       "Now that the assembly is done and the device is connected to the internet...",
       "The device asks the hospital to log in to their Polyphonic Fleet account — either by scanning the QR code or entering the 8-digit code at the website URL.",
@@ -511,7 +514,7 @@ export const SCRIPT = [
   {
     id: "screen_36",
     type: "question",
-    character: { side: "left", id: "biomed" },
+    character: null,
     question: "Now, Biomed prepares for output verification. The biomed wants to check the energy output of each DUALTO port.\nWhat equipment do they need?",
     multiSelect: false,
     options: [
@@ -547,7 +550,7 @@ export const SCRIPT = [
   {
     id: "screen_38",
     type: "question",
-    character: { side: "right", id: "sales" },
+    character: null,
     question: "The work is done. Time for a pat on the back!\nBefore leaving the hospital, mentally replay the journey.\nWhat was the correct order?",
     multiSelect: false,
     options: [
@@ -565,6 +568,7 @@ export const SCRIPT = [
     id: "screen_39",
     type: "completion",
     character: { side: "right", id: "sales" },
+    characterMood: "thinking",
     heading: "Congratulations!",
     body: [
       "That was quite a lot, but you have successfully completed the simulation!",
@@ -576,7 +580,8 @@ export const SCRIPT = [
 export const CHARACTERS = {
   sales: { id: "sales", name: "Sales Rep", placeholderColor: "#CA001B" },
   biomed: { id: "biomed", name: "Biomedical Lead", placeholderColor: "#1B2B5E" },
-  it: { id: "it", name: "IT Lead", placeholderColor: "#2D3748" }
+  it: { id: "it", name: "IT Lead", placeholderColor: "#2D3748" },
+  purchase: { id: "purchase", name: "Purchase Head", placeholderColor: "#7C3AED" }
 };
 
 export const STAGES = [

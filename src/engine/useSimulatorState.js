@@ -90,7 +90,13 @@ export default function useSimulatorState() {
   }, [inputLocked, selectedOptions, currentScreen, advance]);
 
   const dismissFeedback = useCallback(() => {
-    if (feedbackState === 'wrong') {
+    if (feedbackState === 'correct') {
+      if (correctTimerRef.current) {
+        clearTimeout(correctTimerRef.current);
+        correctTimerRef.current = null;
+      }
+      advance();
+    } else if (feedbackState === 'wrong') {
       if (wrongTimerRef.current) {
         clearTimeout(wrongTimerRef.current);
         wrongTimerRef.current = null;
@@ -98,7 +104,7 @@ export default function useSimulatorState() {
       setFeedbackState('none');
       setInputLocked(false);
     }
-  }, [feedbackState]);
+  }, [feedbackState, advance]);
 
   const restart = useCallback(() => {
     if (wrongTimerRef.current) clearTimeout(wrongTimerRef.current);

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Header from './Header';
 import CharacterFigure from './CharacterFigure';
@@ -41,10 +41,8 @@ export default function SimulatorShell({ user, onSignOut }) {
   const { isIdle, dismissIdle } = useIdleTimeout();
   const isAdmin = useAdminMode();
 
-  const stageInfo = getCurrentStageInfo(currentScreenIndex);
-  const isLargeChar =
-    currentScreen &&
-    (currentScreen.type === 'intro' || currentScreen.type === 'completion');
+  const stageInfo = useMemo(() => getCurrentStageInfo(currentScreenIndex), [currentScreenIndex]);
+  const charSide = currentScreen?.character?.side || null;
 
   // Scroll to top and update page title on screen change
   useEffect(() => {
@@ -70,6 +68,9 @@ export default function SimulatorShell({ user, onSignOut }) {
         backgroundColor: '#F8F9FB',
         position: 'relative',
         fontFamily: "'Noto Sans', sans-serif",
+        overflowX: 'hidden',
+        width: '100vw',
+        maxWidth: '100vw',
       }}
     >
       <BackgroundPattern />
@@ -88,7 +89,7 @@ export default function SimulatorShell({ user, onSignOut }) {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentScreen?.id || 'empty'}
-            initial={{ opacity: 0, y: 28 }}
+            initial={currentScreen?.type === 'transition' ? false : { opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
@@ -98,6 +99,7 @@ export default function SimulatorShell({ user, onSignOut }) {
               selectedOptions={selectedOptions}
               feedbackState={feedbackState}
               inputLocked={inputLocked}
+              charSide={charSide}
               onSelect={selectOption}
               onSubmit={submitAnswer}
               onAdvance={advance}
@@ -110,9 +112,9 @@ export default function SimulatorShell({ user, onSignOut }) {
       {/* Character */}
       <CharacterFigure
         character={currentScreen?.character || null}
-        large={isLargeChar}
         mood={currentScreen?.characterMood || null}
-        showQuestionMark={currentScreen?.showQuestionMark || false}
+        screenType={currentScreen?.type || null}
+        screenId={currentScreen?.id || null}
       />
 
       {/* Feedback Overlay */}

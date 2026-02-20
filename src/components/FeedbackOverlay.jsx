@@ -5,22 +5,22 @@ export default function FeedbackOverlay({ feedbackState, message, onDismiss }) {
   const isVisible = feedbackState === 'correct' || feedbackState === 'wrong';
   const isCorrect = feedbackState === 'correct';
 
-  // Escape key to dismiss wrong-answer overlay
+  // Escape key to dismiss overlay (both correct and wrong)
   const handleKeyDown = useCallback(
     (e) => {
-      if (e.key === 'Escape' && !isCorrect && isVisible) {
+      if (e.key === 'Escape' && isVisible) {
         onDismiss();
       }
     },
-    [isCorrect, isVisible, onDismiss]
+    [isVisible, onDismiss]
   );
 
   useEffect(() => {
-    if (isVisible && !isCorrect) {
+    if (isVisible) {
       window.addEventListener('keydown', handleKeyDown);
       return () => window.removeEventListener('keydown', handleKeyDown);
     }
-  }, [isVisible, isCorrect, handleKeyDown]);
+  }, [isVisible, handleKeyDown]);
 
   return (
     <AnimatePresence>
@@ -33,13 +33,13 @@ export default function FeedbackOverlay({ feedbackState, message, onDismiss }) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            cursor: !isCorrect ? 'pointer' : 'default',
+            cursor: 'pointer',
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
-          onClick={!isCorrect ? onDismiss : undefined}
+          onClick={onDismiss}
           role="dialog"
           aria-modal="true"
           aria-label={isCorrect ? 'Correct answer' : 'Wrong answer'}
@@ -129,19 +129,17 @@ export default function FeedbackOverlay({ feedbackState, message, onDismiss }) {
               {message}
             </p>
 
-            {!isCorrect && (
-              <p
-                style={{
-                  fontFamily: "'Noto Sans', sans-serif",
-                  fontWeight: 500,
-                  fontSize: 13,
-                  color: '#9CA3AF',
-                  marginTop: 8,
-                }}
-              >
-                Tap anywhere to try again
-              </p>
-            )}
+            <p
+              style={{
+                fontFamily: "'Noto Sans', sans-serif",
+                fontWeight: 500,
+                fontSize: 13,
+                color: '#9CA3AF',
+                marginTop: 8,
+              }}
+            >
+              {isCorrect ? 'Tap anywhere to continue' : 'Tap anywhere to try again'}
+            </p>
           </motion.div>
         </motion.div>
       )}
