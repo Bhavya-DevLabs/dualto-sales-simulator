@@ -81,9 +81,9 @@ export const SCRIPT = [
       { id: "i", label: "Marketing Product Poster" },
       { id: "j", label: "Sterilization Instructions" }
     ],
-    correctAnswer: ["a", "c", "d", "e"],
+    correctAnswer: ["a", "b", "c", "d", "e"],
     feedback: {
-      correct: "The Technical Brochure, Connectivity Welcome Packet, Cybersecurity Whitepaper, and Privacy & Security Technical Brief are the right resources.",
+      correct: "Technical Brochure, Service Brochure, Connectivity Welcome Packet, Cybersecurity Whitepaper, and Privacy & Security Technical Brief are the right resources for a BME & IT discussion.",
       wrong: "Think about what a BME & IT team needs — technical and security documents, not clinical or surgical ones."
     }
   },
@@ -160,7 +160,7 @@ export const SCRIPT = [
       { id: "e", label: "List of questions" },
       { id: "f", label: "Surgeon preferences" },
       { id: "g", label: "J&J WWID" },
-      { id: "h", label: "Mahi's approval" }
+      { id: "h", label: "Mahi CC'd for moral support" }
     ],
     correctAnswer: ["a", "b", "c", "d", "e"],
     feedback: {

@@ -78,14 +78,14 @@ export default function useSimulatorState() {
       correctTimerRef.current = setTimeout(() => {
         correctTimerRef.current = null;
         advance();
-      }, 1000);
+      }, 7000);
     } else {
       setFeedbackState('wrong');
       wrongTimerRef.current = setTimeout(() => {
         wrongTimerRef.current = null;
         setFeedbackState('none');
         setInputLocked(false);
-      }, 2000);
+      }, 7000);
     }
   }, [inputLocked, selectedOptions, currentScreen, advance]);
 
