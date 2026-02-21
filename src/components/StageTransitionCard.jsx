@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import CtaLabel from './CtaLabel';
 
 export default function StageTransitionCard({
   stageNumber,
@@ -127,6 +128,9 @@ export default function StageTransitionCard({
             cursor: 'pointer',
             outline: 'none',
             boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 8,
           }}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -134,7 +138,7 @@ export default function StageTransitionCard({
           whileHover={{ scale: 1.02, backgroundColor: '#F5F5F5' }}
           whileTap={{ scale: 0.97 }}
         >
-          {ctaLabel || 'Continue'}
+          <CtaLabel>{ctaLabel || 'Continue'}</CtaLabel>
         </motion.button>
       </div>
     </motion.div>

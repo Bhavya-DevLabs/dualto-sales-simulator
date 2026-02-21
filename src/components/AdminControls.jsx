@@ -20,11 +20,14 @@ export default function AdminControls({ onSkip }) {
         border: 'none',
         outline: 'none',
         backdropFilter: 'blur(8px)',
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 8,
       }}
       whileHover={{ scale: 1.05, backgroundColor: 'rgba(19, 78, 74, 0.75)' }}
       whileTap={{ scale: 0.95 }}
     >
-      Skip Screen &rarr;
+      Skip Screen <span style={{ lineHeight: 1, display: 'inline-flex', alignItems: 'center' }}>→</span>
     </motion.button>
   );
 }

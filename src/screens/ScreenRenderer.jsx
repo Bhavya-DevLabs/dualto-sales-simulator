@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import QuestionPanel from '../components/QuestionPanel';
 import StageTransitionCard from '../components/StageTransitionCard';
 import StoryScreen from '../components/StoryScreen';
+import CtaLabel from '../components/CtaLabel';
 
 /** Fisher-Yates shuffle (returns a new array) */
 function shuffleArray(arr) {
@@ -277,6 +278,9 @@ function IntroScreen({ screen, onAdvance }) {
             border: 'none',
             cursor: 'pointer',
             boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 8,
           }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -284,7 +288,7 @@ function IntroScreen({ screen, onAdvance }) {
           whileHover={{ scale: 1.02, backgroundColor: '#F5F5F5' }}
           whileTap={{ scale: 0.97 }}
         >
-          {screen.ctaLabel || 'Continue'}
+          <CtaLabel>{screen.ctaLabel || 'Continue'}</CtaLabel>
         </motion.button>
       </div>
     </div>

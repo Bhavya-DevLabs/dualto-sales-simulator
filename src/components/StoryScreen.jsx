@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink as ExternalLinkIcon } from 'lucide-react';
+import CtaLabel from './CtaLabel';
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -186,7 +187,7 @@ export default function StoryScreen({
                 e.currentTarget.style.borderColor = 'rgba(255,255,255,0.4)';
               }}
             >
-              {externalLink.label}
+              <CtaLabel>{externalLink.label}</CtaLabel>
               <ExternalLinkIcon size={15} strokeWidth={2} />
             </a>
           </motion.div>
@@ -209,6 +210,9 @@ export default function StoryScreen({
                 border: 'none',
                 cursor: 'pointer',
                 boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
               }}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -217,7 +221,7 @@ export default function StoryScreen({
               whileHover={{ scale: 1.02, backgroundColor: '#F0F0F0' }}
               whileTap={{ scale: 0.97 }}
             >
-              Next →
+              Next <span style={{ lineHeight: 1, display: 'inline-flex', alignItems: 'center' }}>→</span>
             </motion.button>
           ) : (
             <motion.button
@@ -234,6 +238,9 @@ export default function StoryScreen({
                 border: 'none',
                 cursor: 'pointer',
                 boxShadow: '0 4px 16px rgba(202, 0, 27, 0.3)',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
               }}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -242,7 +249,7 @@ export default function StoryScreen({
               whileHover={{ scale: 1.02, backgroundColor: '#A8001A' }}
               whileTap={{ scale: 0.97 }}
             >
-              {ctaLabel}
+              <CtaLabel>{ctaLabel}</CtaLabel>
             </motion.button>
           )}
         </AnimatePresence>
