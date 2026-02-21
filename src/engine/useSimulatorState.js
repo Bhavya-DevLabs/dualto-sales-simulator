@@ -23,6 +23,31 @@ export default function useSimulatorState() {
     saveScreenIndex(currentScreenIndex);
   }, [currentScreenIndex]);
 
+  // Set initial history state and listen for back/forward navigation
+  useEffect(() => {
+    window.history.replaceState({ screen: currentScreenIndex }, '');
+
+    const handlePopState = (e) => {
+      if (e.state && typeof e.state.screen === 'number') {
+        setCurrentScreenIndex(e.state.screen);
+        setSelectedOptions([]);
+        setFeedbackState('none');
+        setInputLocked(false);
+        if (wrongTimerRef.current) {
+          clearTimeout(wrongTimerRef.current);
+          wrongTimerRef.current = null;
+        }
+        if (correctTimerRef.current) {
+          clearTimeout(correctTimerRef.current);
+          correctTimerRef.current = null;
+        }
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   // Cleanup timers on unmount
   useEffect(() => {
     return () => {
@@ -54,7 +79,11 @@ export default function useSimulatorState() {
   const advance = useCallback(() => {
     setCurrentScreenIndex((prev) => {
       const next = prev + 1;
-      return next < SCRIPT.length ? next : prev;
+      if (next < SCRIPT.length) {
+        window.history.pushState({ screen: next }, '');
+        return next;
+      }
+      return prev;
     });
     setSelectedOptions([]);
     setFeedbackState('none');
@@ -114,6 +143,7 @@ export default function useSimulatorState() {
     setSelectedOptions([]);
     setFeedbackState('none');
     setInputLocked(false);
+    window.history.pushState({ screen: 0 }, '');
   }, []);
 
   return {
