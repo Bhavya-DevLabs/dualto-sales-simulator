@@ -10,6 +10,11 @@ const ASSET_MAP = {
     alt: 'Hospital Federation Form',
     maxWidth: '560px',
   },
+  'mac-address': {
+    file: 'assets/mac-address.jpeg',
+    alt: 'MAC Address explanation',
+    maxWidth: '560px',
+  },
 };
 
 export default function StoryScreen({

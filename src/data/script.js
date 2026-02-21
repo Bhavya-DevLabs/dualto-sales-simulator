@@ -420,10 +420,9 @@ export const SCRIPT = [
     id: "screen_29",
     type: "info",
     character: { side: "right", id: "it" },
+    showAsset: "mac-address",
     body: [
-      "Quick information: What are MAC addresses & why do we need to whitelist them?",
-      "A MAC (Media Access Control) address is a unique hardware identifier assigned to the DUALTO communications module.",
-      "Whitelisting tells the hospital's network to recognise and allow DUALTO to connect — without it, the device would be blocked."
+      "Quick information"
     ],
     ctaLabel: "Got It"
   },
