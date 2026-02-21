@@ -15,6 +15,16 @@ const ASSET_MAP = {
     alt: 'MAC Address explanation',
     maxWidth: '560px',
   },
+  'url-list': {
+    file: 'assets/url-list.png',
+    alt: 'Required URLs for whitelisting',
+    maxWidth: '560px',
+  },
+  'polyphonic-setup': {
+    file: 'assets/polyphonic-setup.png',
+    alt: 'Polyphonic Fleet setup screen',
+    maxWidth: '560px',
+  },
 };
 
 export default function StoryScreen({

@@ -447,6 +447,7 @@ export const SCRIPT = [
     id: "screen_31",
     type: "info",
     character: null,
+    showAsset: "url-list",
     body: [
       "Share this list of required URLs with the hospital IT team for whitelisting.",
       "All URLs are documented in the Connectivity Welcome Packet."
@@ -484,6 +485,7 @@ export const SCRIPT = [
     id: "screen_34",
     type: "info",
     character: { side: "left", id: "biomed" },
+    showAsset: "polyphonic-setup",
     body: [
       "Now that the assembly is done and the device is connected to the internet...",
       "The device asks the hospital to log in to their Polyphonic Fleet account — either by scanning the QR code or entering the 8-digit code at the website URL.",
