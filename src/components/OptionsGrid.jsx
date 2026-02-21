@@ -19,6 +19,7 @@ export default function OptionsGrid({
         gap: 12,
         width: '100%',
         maxWidth: 780,
+        alignItems: 'stretch',
       }}
     >
       {options.map((option, index) => {

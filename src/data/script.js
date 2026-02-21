@@ -301,11 +301,20 @@ export const SCRIPT = [
   },
   {
     id: "screen_20",
+    type: "info",
+    character: null,
+    body: [
+      "Congratulations, the PO has been received!"
+    ],
+    ctaLabel: "Continue"
+  },
+  {
+    id: "screen_20b",
     type: "transition",
     character: null,
     stageNumber: 3,
     stageTitle: "Polyphonic Preparation",
-    preLabel: "Congratulations, the PO has been received!\nNow it's time to start with",
+    preLabel: "Now it's time to start with",
     ctaLabel: "Let's Go"
   },
   {
@@ -391,11 +400,22 @@ export const SCRIPT = [
   },
   {
     id: "screen_27",
+    type: "info",
+    character: null,
+    body: [
+      "Great work.",
+      "You just heard from the supply chain team that the DUALTO unit is shipped for India.",
+      "You have the MAC addresses for the communications module."
+    ],
+    ctaLabel: "Continue"
+  },
+  {
+    id: "screen_27b",
     type: "transition",
     character: null,
     stageNumber: 4,
     stageTitle: "Activation & Go-Live",
-    preLabel: "Great work.\nYou just heard from the supply chain team that the DUALTO unit is shipped for India. You have the MAC addresses for the communications module.\nNext, we move onto",
+    preLabel: "Now, it's time to move onto",
     ctaLabel: "Let's Go"
   },
   {
@@ -429,7 +449,7 @@ export const SCRIPT = [
   {
     id: "screen_30",
     type: "question",
-    character: null,
+    character: { side: "right", id: "it" },
     preText: "The IT lead asks:\n\"Is that all? Just an update — the Apollo internet network usually blocks a lot of web pages & websites. Are there any additional URLs (webpage addresses) that you want me to whitelist?\"\n\nWhat do you say?",
     question: "Are there additional URLs to whitelist?",
     multiSelect: false,
@@ -449,18 +469,27 @@ export const SCRIPT = [
     character: null,
     showAsset: "url-list",
     body: [
-      "Share this list of required URLs with the hospital IT team for whitelisting.",
-      "All URLs are documented in the Connectivity Welcome Packet."
+      "Share this list of required URLs with the hospital IT team for whitelisting."
     ],
     ctaLabel: "Continue"
   },
   {
     id: "screen_32",
+    type: "info",
+    character: null,
+    body: [
+      "Happy Install Day!",
+      "The DUALTO has finally reached Apollo Hospital, Delhi."
+    ],
+    ctaLabel: "Continue"
+  },
+  {
+    id: "screen_32b",
     type: "transition",
     character: null,
     stageNumber: 5,
     stageTitle: "Device Installation",
-    preLabel: "Happy Install Day!\nThe DUALTO has finally reached Apollo Hospital, Delhi.\nIt is time to start with",
+    preLabel: "Now, it's time to start with",
     ctaLabel: "Open the Boxes!"
   },
   {
@@ -486,10 +515,11 @@ export const SCRIPT = [
     type: "info",
     character: { side: "left", id: "biomed" },
     showAsset: "polyphonic-setup",
-    body: [
-      "Now that the assembly is done and the device is connected to the internet...",
-      "The device asks the hospital to log in to their Polyphonic Fleet account — either by scanning the QR code or entering the 8-digit code at the website URL.",
-      "Once the biomed logs in and authenticates, the device gets installed."
+    bodyBefore: [
+      "Now that the assembly is done and the device is connected to the internet, the device asks the hospital to log in to their Polyphonic Fleet account — either by scanning the QR code or entering the 8-digit code at the website URL."
+    ],
+    bodyAfter: [
+      "Once the biomed logs in to the Polyphonic Fleet account & authenticates, the device gets installed."
     ],
     ctaLabel: "Continue"
   },
@@ -597,8 +627,8 @@ export const STAGES = [
 export function getCurrentStage(screenIndex) {
   if (screenIndex <= 2) return null;
   if (screenIndex <= 11) return STAGES[0];
-  if (screenIndex <= 18) return STAGES[1];
-  if (screenIndex <= 25) return STAGES[2];
-  if (screenIndex <= 30) return STAGES[3];
+  if (screenIndex <= 19) return STAGES[1];
+  if (screenIndex <= 27) return STAGES[2];
+  if (screenIndex <= 33) return STAGES[3];
   return STAGES[4];
 }

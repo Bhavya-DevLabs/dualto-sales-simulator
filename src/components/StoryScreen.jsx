@@ -34,14 +34,16 @@ export default function StoryScreen({
   ctaLabel = 'Continue →',
   externalLink,
   showAsset,
+  linesAfter,
 }) {
   const asset = showAsset ? ASSET_MAP[showAsset] : null;
+  const totalLines = lines.length + (linesAfter ? linesAfter.length : 0);
   const [visibleCount, setVisibleCount] = useState(1);
-  const allVisible = visibleCount >= lines.length;
+  const allVisible = visibleCount >= totalLines;
 
   const handleNext = useCallback(() => {
-    setVisibleCount((prev) => Math.min(prev + 1, lines.length));
-  }, [lines.length]);
+    setVisibleCount((prev) => Math.min(prev + 1, totalLines));
+  }, [totalLines]);
 
   // Enter key: reveal next line or complete
   useEffect(() => {
@@ -108,7 +110,7 @@ export default function StoryScreen({
           <AnimatePresence>
             {lines.slice(0, visibleCount).map((line, i) => (
               <motion.p
-                key={i}
+                key={`before-${i}`}
                 style={{
                   fontFamily: "'Montserrat', sans-serif",
                   fontWeight: 500,
@@ -129,8 +131,8 @@ export default function StoryScreen({
           </AnimatePresence>
         </div>
 
-        {/* Asset image — shown when all lines are visible */}
-        {allVisible && asset && (
+        {/* Asset image — shown after all "before" lines are visible */}
+        {visibleCount >= lines.length && asset && (
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -150,6 +152,41 @@ export default function StoryScreen({
               }}
             />
           </motion.div>
+        )}
+
+        {/* Lines after asset — revealed after asset */}
+        {linesAfter && visibleCount > lines.length && (
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 20,
+              marginBottom: 40,
+            }}
+          >
+            <AnimatePresence>
+              {linesAfter.slice(0, visibleCount - lines.length).map((line, i) => (
+                <motion.p
+                  key={`after-${i}`}
+                  style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontWeight: 500,
+                    fontSize: 20,
+                    color: '#FFFFFF',
+                    lineHeight: 1.8,
+                    textAlign: 'center',
+                    maxWidth: 640,
+                    margin: '0 auto',
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, ease: 'easeOut' }}
+                >
+                  {line}
+                </motion.p>
+              ))}
+            </AnimatePresence>
+          </div>
         )}
 
         {/* External link button — only when all lines are visible */}

@@ -81,16 +81,21 @@ export default function ScreenRenderer({
         />
       );
 
-    case 'info':
+    case 'info': {
+      const infoLines = screen.bodyBefore
+        ? screen.bodyBefore
+        : Array.isArray(screen.body) ? screen.body : [screen.body];
       return (
         <StoryScreen
-          lines={Array.isArray(screen.body) ? screen.body : [screen.body]}
+          lines={infoLines}
           onComplete={onAdvance}
           ctaLabel={screen.ctaLabel || 'Continue →'}
           externalLink={screen.externalLink}
           showAsset={screen.showAsset}
+          linesAfter={screen.bodyAfter || null}
         />
       );
+    }
 
     case 'question': {
       // If screen has preText and story phase not yet complete → show story
