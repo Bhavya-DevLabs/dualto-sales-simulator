@@ -1,6 +1,16 @@
 import OptionsGrid from './OptionsGrid';
 import SubmitButton from './SubmitButton';
 
+const BASE = import.meta.env.BASE_URL;
+
+const ASSET_MAP = {
+  'email-screenshot': {
+    file: 'assets/email-screenshot.png',
+    alt: 'Email reference',
+    maxWidth: '480px',
+  },
+};
+
 export default function QuestionPanel({
   question,
   options,
@@ -8,9 +18,11 @@ export default function QuestionPanel({
   selectedOptions,
   inputLocked,
   feedbackState,
+  showAsset,
   onSelect,
   onSubmit,
 }) {
+  const asset = showAsset ? ASSET_MAP[showAsset] : null;
   return (
     <div
       style={{
@@ -84,6 +96,21 @@ export default function QuestionPanel({
         >
           Select all that apply
         </p>
+      )}
+
+      {asset && (
+        <img
+          src={`${BASE}${asset.file}`}
+          alt={asset.alt}
+          style={{
+            maxWidth: asset.maxWidth,
+            width: '90%',
+            borderRadius: '12px',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+            margin: '0 auto 24px auto',
+            display: 'block',
+          }}
+        />
       )}
 
       <OptionsGrid

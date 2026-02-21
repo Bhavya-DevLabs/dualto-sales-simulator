@@ -87,6 +87,7 @@ export default function ScreenRenderer({
           onComplete={onAdvance}
           ctaLabel={screen.ctaLabel || 'Continue →'}
           externalLink={screen.externalLink}
+          showAsset={screen.showAsset}
         />
       );
 
@@ -119,6 +120,7 @@ export default function ScreenRenderer({
             selectedOptions={selectedOptions}
             inputLocked={inputLocked}
             feedbackState={feedbackState}
+            showAsset={screen.showAsset}
             onSelect={onSelect}
             onSubmit={onSubmit}
           />

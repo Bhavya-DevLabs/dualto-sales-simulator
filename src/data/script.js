@@ -149,6 +149,7 @@ export const SCRIPT = [
     id: "screen_10",
     type: "question",
     character: null,
+    showAsset: "email-screenshot",
     question: "And what details must you include inside the email body?",
     multiSelect: true,
     options: [
@@ -292,9 +293,9 @@ export const SCRIPT = [
     id: "screen_19",
     type: "info",
     character: null,
+    showAsset: "hospital-federation",
     body: [
-      "The Connectivity Welcome Packet contains everything the IT team needs.",
-      "Including the Federation section for SSO setup and the full list of URLs to whitelist."
+      "This is the Hospital Federation section of the Connectivity Welcome Packet — the form you fill with the IT team to enable SSO."
     ],
     ctaLabel: "Continue"
   },

@@ -2,12 +2,24 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink as ExternalLinkIcon } from 'lucide-react';
 
+const BASE = import.meta.env.BASE_URL;
+
+const ASSET_MAP = {
+  'hospital-federation': {
+    file: 'assets/hospital-federation.png',
+    alt: 'Hospital Federation Form',
+    maxWidth: '560px',
+  },
+};
+
 export default function StoryScreen({
   lines,
   onComplete,
   ctaLabel = 'Continue →',
   externalLink,
+  showAsset,
 }) {
+  const asset = showAsset ? ASSET_MAP[showAsset] : null;
   const [visibleCount, setVisibleCount] = useState(1);
   const allVisible = visibleCount >= lines.length;
 
@@ -100,6 +112,29 @@ export default function StoryScreen({
             ))}
           </AnimatePresence>
         </div>
+
+        {/* Asset image — shown when all lines are visible */}
+        {allVisible && asset && (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            style={{ marginBottom: 20 }}
+          >
+            <img
+              src={`${BASE}${asset.file}`}
+              alt={asset.alt}
+              style={{
+                maxWidth: asset.maxWidth,
+                width: '90%',
+                borderRadius: '12px',
+                boxShadow: '0 4px 24px rgba(0,0,0,0.2)',
+                margin: '0 auto 24px auto',
+                display: 'block',
+              }}
+            />
+          </motion.div>
+        )}
 
         {/* External link button — only when all lines are visible */}
         {allVisible && externalLink && (
