@@ -44,8 +44,8 @@ export default function CharacterFigure({ character, mood, screenType, screenId 
 
   if (!character) return null;
 
-  // Only show characters on info, intro, and completion screens
-  if (!['info', 'intro', 'completion'].includes(screenType)) return null;
+  // Only show characters on screens that typically display them
+  if (!['info', 'intro', 'completion', 'question'].includes(screenType)) return null;
 
   const charData = CHARACTERS[character.id];
   if (!charData) return null;
@@ -58,14 +58,19 @@ export default function CharacterFigure({ character, mood, screenType, screenId 
   const src = `${BASE}characters/${imageInfo.file}`;
 
   const mirrorTransform = mirror ? 'scaleX(-1)' : 'none';
+  const displayName = charData.name.length > 8 ? charData.name.split(' ')[0] : charData.name;
 
   return (
     <>
-      {/* Keyframe animation injected once */}
+      {/* Keyframe animations — image version includes mirror, badge version never flips */}
       <style>{`
-        @keyframes characterSlideUp {
-          from { opacity: 0; transform: translateY(40px) ${mirrorTransform === 'scaleX(-1)' ? 'scaleX(-1)' : ''}; }
-          to   { opacity: 1; transform: translateY(0) ${mirrorTransform === 'scaleX(-1)' ? 'scaleX(-1)' : ''}; }
+        @keyframes characterImgSlideUp {
+          from { opacity: 0; transform: translateY(40px) ${mirror ? 'scaleX(-1)' : ''}; }
+          to   { opacity: 1; transform: translateY(0) ${mirror ? 'scaleX(-1)' : ''}; }
+        }
+        @keyframes characterBadgeSlideUp {
+          from { opacity: 0; transform: translateY(40px); }
+          to   { opacity: 1; transform: translateY(0); }
         }
       `}</style>
 
@@ -95,7 +100,7 @@ export default function CharacterFigure({ character, mood, screenType, screenId 
               transform: mirrorTransform,
               pointerEvents: 'none',
               display: 'block',
-              animation: 'characterSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+              animation: 'characterImgSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
             }}
             draggable={false}
           />
@@ -112,7 +117,7 @@ export default function CharacterFigure({ character, mood, screenType, screenId 
             right: isLeft ? 'auto' : 16,
             zIndex: 10,
             pointerEvents: 'none',
-            animation: 'characterSlideUp 0.35s ease-out forwards',
+            animation: 'characterBadgeSlideUp 0.35s ease-out forwards',
           }}
           className="flex lg:hidden"
         >
@@ -146,7 +151,7 @@ export default function CharacterFigure({ character, mood, screenType, screenId 
                 whiteSpace: 'nowrap',
               }}
             >
-              {charData.name}
+              {displayName}
             </span>
           </div>
         </div>

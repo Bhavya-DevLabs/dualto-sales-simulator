@@ -227,7 +227,7 @@ export const SCRIPT = [
   {
     id: "screen_15",
     type: "question",
-    character: null,
+    character: { side: "right", id: "it" },
     preText: "Since Wi-Fi capabilities are not yet activated in DUALTO, Ethernet connection is a must at the hospital.\n\nThe IT admin asks:\n\"How do I connect this to the Ethernet?\"\n\nYou explain that the 2 methods are:",
     question: "Select the 2 correct Ethernet connection methods:",
     multiSelect: true,
@@ -246,7 +246,7 @@ export const SCRIPT = [
   {
     id: "screen_16",
     type: "question",
-    character: null,
+    character: { side: "right", id: "it" },
     preText: "\"Great! Let me know once your device is available. I have reserved one Ethernet port for DUALTO in my office.\n\nYou also mentioned that SSO is recommended prior to installing DUALTO. What benefit will this have for me & my team?\"\n\nYou tell them:",
     question: "What is the key benefit of SSO?",
     multiSelect: false,
