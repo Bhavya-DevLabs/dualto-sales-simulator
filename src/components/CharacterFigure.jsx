@@ -79,11 +79,10 @@ export default function CharacterFigure({ character, mood, screenType, screenId 
           style={{
             position: 'fixed',
             bottom: 0,
-            left: isLeft ? 40 : 'auto',
-            right: isLeft ? 'auto' : 40,
+            left: isLeft ? '5vw' : 'auto',
+            right: isLeft ? 'auto' : '5vw',
             zIndex: 10,
             pointerEvents: 'none',
-            overflow: 'hidden',
           }}
           className="hidden lg:block"
         >
