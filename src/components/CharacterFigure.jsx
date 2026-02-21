@@ -79,8 +79,8 @@ export default function CharacterFigure({ character, mood, screenType, screenId 
           style={{
             position: 'fixed',
             bottom: 0,
-            left: isLeft ? 0 : 'auto',
-            right: isLeft ? 'auto' : 0,
+            left: isLeft ? 40 : 'auto',
+            right: isLeft ? 'auto' : 40,
             zIndex: 10,
             pointerEvents: 'none',
             overflow: 'hidden',
