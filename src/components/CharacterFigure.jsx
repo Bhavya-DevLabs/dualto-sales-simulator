@@ -44,8 +44,8 @@ export default function CharacterFigure({ character, mood, screenType, screenId 
 
   if (!character) return null;
 
-  // Only show characters on screens that typically display them
-  if (!['info', 'intro', 'completion', 'question'].includes(screenType)) return null;
+  // Only show characters on info, intro, and completion screens — never on question screens
+  if (!['info', 'intro', 'completion'].includes(screenType)) return null;
 
   const charData = CHARACTERS[character.id];
   if (!charData) return null;
@@ -58,7 +58,6 @@ export default function CharacterFigure({ character, mood, screenType, screenId 
   const src = `${BASE}characters/${imageInfo.file}`;
 
   const mirrorTransform = mirror ? 'scaleX(-1)' : 'none';
-  const displayName = charData.name.length > 8 ? charData.name.split(' ')[0] : charData.name;
 
   return (
     <>
@@ -151,7 +150,7 @@ export default function CharacterFigure({ character, mood, screenType, screenId 
                 whiteSpace: 'nowrap',
               }}
             >
-              {displayName}
+              {charData.name}
             </span>
           </div>
         </div>

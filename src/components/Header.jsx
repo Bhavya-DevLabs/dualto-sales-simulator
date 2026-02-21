@@ -111,7 +111,7 @@ export default function Header({ currentScreenIndex, totalScreens, stageNumber, 
                 }}
               >
                 <User size={14} strokeWidth={2.5} />
-                {user.name}
+                {user.name.length > 10 ? user.name.split(' ')[0] : user.name}
               </div>
 
               {/* Sign Out icon button — 44px touch target */}
