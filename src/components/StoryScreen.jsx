@@ -26,6 +26,16 @@ const ASSET_MAP = {
     alt: 'Polyphonic Fleet setup screen',
     maxWidth: '560px',
   },
+  'encryption-scene': {
+    file: 'characters/encryption-scene.png',
+    alt: 'IT Lead asks about encryption mechanism',
+    maxWidth: '480px',
+  },
+  'hcp-group': {
+    file: 'characters/hcp-group.png',
+    alt: 'Sales rep discussing with HCPs',
+    maxWidth: '480px',
+  },
 };
 
 export default function StoryScreen({

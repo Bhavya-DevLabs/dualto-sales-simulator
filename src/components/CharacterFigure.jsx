@@ -11,13 +11,18 @@ const IMAGE_MAP = {
     nervous:  { file: 'sales-nervous.png',   facing: 'right' },
   },
   it: {
-    default: { file: 'it-lead.png', facing: 'left' },
+    default:  { file: 'it-lead.png',    facing: 'left' },
+    confused: { file: 'it-confused.png', facing: 'straight' },
   },
   biomed: {
-    default: { file: 'biomed-lead.png', facing: 'straight' },
+    default:  { file: 'biomed-lead.png',     facing: 'straight' },
+    thumbsup: { file: 'biomed-thumbsup.png', facing: 'straight' },
   },
   purchase: {
     default: { file: 'purchase-head.png', facing: 'straight' },
+  },
+  specialist: {
+    default: { file: 'dualto-specialist.png', facing: 'straight' },
   },
 };
 
@@ -32,21 +37,7 @@ function needsMirror(naturalFacing, placementSide) {
   return naturalFacing !== placementSide;
 }
 
-export default function CharacterFigure({ character, mood, screenType, screenId }) {
-  const [bgReady, setBgReady] = useState(false);
-
-  // Reset bgReady on screen change, then re-trigger after 300ms
-  useEffect(() => {
-    setBgReady(false);
-    const t = setTimeout(() => setBgReady(true), 300);
-    return () => clearTimeout(t);
-  }, [screenId]);
-
-  if (!character) return null;
-
-  // Only show characters on info, intro, and completion screens — never on question screens
-  if (!['info', 'intro', 'completion'].includes(screenType)) return null;
-
+function SingleCharacter({ character, mood, bgReady }) {
   const charData = CHARACTERS[character.id];
   if (!charData) return null;
 
@@ -56,20 +47,15 @@ export default function CharacterFigure({ character, mood, screenType, screenId 
   const isLeft = character.side === 'left';
   const mirror = needsMirror(imageInfo.facing, character.side);
   const src = `${BASE}characters/${imageInfo.file}`;
-
   const mirrorTransform = mirror ? 'scaleX(-1)' : 'none';
+  const animName = `charSlide-${character.id}-${character.side}`;
 
   return (
     <>
-      {/* Keyframe animations — image version includes mirror, badge version never flips */}
       <style>{`
-        @keyframes characterImgSlideUp {
+        @keyframes ${animName} {
           from { opacity: 0; transform: translateY(40px) ${mirror ? 'scaleX(-1)' : ''}; }
           to   { opacity: 1; transform: translateY(0) ${mirror ? 'scaleX(-1)' : ''}; }
-        }
-        @keyframes characterBadgeSlideUp {
-          from { opacity: 0; transform: translateY(40px); }
-          to   { opacity: 1; transform: translateY(0); }
         }
       `}</style>
 
@@ -98,7 +84,7 @@ export default function CharacterFigure({ character, mood, screenType, screenId 
               transform: mirrorTransform,
               pointerEvents: 'none',
               display: 'block',
-              animation: 'characterImgSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+              animation: `${animName} 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards`,
             }}
             draggable={false}
           />
@@ -115,7 +101,7 @@ export default function CharacterFigure({ character, mood, screenType, screenId 
             right: isLeft ? 'auto' : 16,
             zIndex: 10,
             pointerEvents: 'none',
-            animation: 'characterBadgeSlideUp 0.35s ease-out forwards',
+            animation: `${animName} 0.35s ease-out forwards`,
           }}
           className="flex lg:hidden"
         >
@@ -153,6 +139,37 @@ export default function CharacterFigure({ character, mood, screenType, screenId 
             </span>
           </div>
         </div>
+      )}
+    </>
+  );
+}
+
+export default function CharacterFigure({
+  character,
+  mood,
+  secondCharacter,
+  secondMood,
+  screenType,
+  screenId,
+}) {
+  const [bgReady, setBgReady] = useState(false);
+
+  useEffect(() => {
+    setBgReady(false);
+    const t = setTimeout(() => setBgReady(true), 300);
+    return () => clearTimeout(t);
+  }, [screenId]);
+
+  if (!character) return null;
+
+  // Show characters on info, intro, completion, AND question screens
+  if (!['info', 'intro', 'completion', 'question'].includes(screenType)) return null;
+
+  return (
+    <>
+      <SingleCharacter character={character} mood={mood} bgReady={bgReady} />
+      {secondCharacter && (
+        <SingleCharacter character={secondCharacter} mood={secondMood} bgReady={bgReady} />
       )}
     </>
   );

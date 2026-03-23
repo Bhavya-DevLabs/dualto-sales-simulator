@@ -10,6 +10,8 @@ import {
   ChevronRight,
 } from 'lucide-react';
 
+const BASE = import.meta.env.BASE_URL;
+
 function getIconForLabel(label) {
   const l = label.toLowerCase();
   if (/connectiv|network|ethernet|sso|url|wifi|tether|federation|lan|wired/i.test(l)) return Wifi;
@@ -38,6 +40,7 @@ export default function OptionCard({
   onSelect,
 }) {
   const Icon = getIconForLabel(option.label);
+  const hasImage = !!option.image;
 
   const handleSelect = () => {
     if (!isDisabled) onSelect(option.id);
@@ -63,8 +66,8 @@ export default function OptionCard({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        minHeight: 100,
-        padding: 20,
+        minHeight: hasImage ? 140 : 100,
+        padding: hasImage ? '16px 12px' : 20,
         backgroundColor: isSelected ? '#ECFEFF' : '#FFFFFF',
         borderRadius: 16,
         border: isSelected ? '2px solid #0891B2' : '1.5px solid #CCFBF1',
@@ -93,33 +96,49 @@ export default function OptionCard({
       aria-pressed={isSelected}
       aria-disabled={isDisabled}
     >
-      {/* Icon circle — centered above text */}
-      <div
-        style={{
-          width: 40,
-          height: 40,
-          borderRadius: '50%',
-          backgroundColor: isSelected ? '#CFFAFE' : '#EEF2FF',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginBottom: 10,
-          transition: 'background-color 0.2s',
-        }}
-      >
-        <Icon
-          size={20}
-          color={isSelected ? '#0891B2' : '#134E4A'}
-          strokeWidth={2}
+      {hasImage ? (
+        /* Image-based card: character clipart or resource icon on top */
+        <img
+          src={`${BASE}${option.image}`}
+          alt={option.label}
+          style={{
+            height: 80,
+            width: 'auto',
+            maxWidth: '100%',
+            objectFit: 'contain',
+            marginBottom: 8,
+          }}
+          draggable={false}
         />
-      </div>
+      ) : (
+        /* Icon circle — centered above text (default) */
+        <div
+          style={{
+            width: 40,
+            height: 40,
+            borderRadius: '50%',
+            backgroundColor: isSelected ? '#CFFAFE' : '#EEF2FF',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginBottom: 10,
+            transition: 'background-color 0.2s',
+          }}
+        >
+          <Icon
+            size={20}
+            color={isSelected ? '#0891B2' : '#134E4A'}
+            strokeWidth={2}
+          />
+        </div>
+      )}
 
       {/* Label — centered */}
       <span
         style={{
           fontFamily: "'Noto Sans', sans-serif",
           fontWeight: 500,
-          fontSize: 15,
+          fontSize: hasImage ? 13 : 15,
           color: '#134E4A',
           lineHeight: 1.45,
           textAlign: 'center',

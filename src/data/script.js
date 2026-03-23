@@ -7,6 +7,7 @@ export const SCRIPT = [
     id: "screen_01",
     type: "intro",
     character: { side: "right", id: "sales" },
+    characterMood: "nervous",
     heading: "Welcome!",
     body: [
       "You've received a hot lead for DUALTO in Apollo Hospital, Delhi.",
@@ -18,7 +19,8 @@ export const SCRIPT = [
   {
     id: "screen_02",
     type: "question",
-    character: null,
+    character: { side: "right", id: "sales" },
+    characterMood: "nervous",
     question: "What is the first step in the onboarding journey?",
     multiSelect: false,
     options: [
@@ -47,15 +49,16 @@ export const SCRIPT = [
     id: "screen_04",
     type: "question",
     character: null,
+    preTextAsset: "hcp-group",
     preText: "You have successfully convinced all HCPs on DUALTO's features & benefits with multiple demonstrations across multiple departments.\n\nNow, you are stuck.\n\nWhat about connectivity & polyphonic – how do you start the discussion around it?\n\nLet's begin with identifying your key stakeholders for this step.",
     question: "Who are the key stakeholders for the connectivity & Polyphonic Fleet discussion?",
     multiSelect: true,
     options: [
-      { id: "a", label: "Biomedical team" },
-      { id: "b", label: "IT Lead" },
-      { id: "c", label: "KOLs" },
-      { id: "d", label: "Purchase Head" },
-      { id: "e", label: "Scrub nurse" }
+      { id: "a", label: "Biomedical team", image: "characters/biomedical-team.png" },
+      { id: "b", label: "IT Lead", image: "characters/it-lead.png" },
+      { id: "c", label: "KOLs", image: "characters/kols.png" },
+      { id: "d", label: "Purchase Head", image: "characters/purchase-head.png" },
+      { id: "e", label: "Scrub nurse", image: "characters/scrub-nurse.png" }
     ],
     correctAnswer: ["a", "b"],
     feedback: {
@@ -70,16 +73,16 @@ export const SCRIPT = [
     question: "Now you are planning to do a preliminary discussion around Polyphonic Fleet & connectivity with the BME & IT Team.\nWhat resources will you use for your discussion?",
     multiSelect: true,
     options: [
-      { id: "a", label: "Technical Brochure" },
-      { id: "b", label: "Service Brochure" },
-      { id: "c", label: "Connectivity Welcome Packet" },
-      { id: "d", label: "Cybersecurity Whitepaper" },
-      { id: "e", label: "Privacy & Security Technical Brief" },
-      { id: "f", label: "Installation Manual" },
-      { id: "g", label: "Surgeon Training Guide" },
-      { id: "h", label: "Audit Log Handbook" },
-      { id: "i", label: "Marketing Product Poster" },
-      { id: "j", label: "Sterilization Instructions" }
+      { id: "a", label: "Technical Brochure", image: "assets/technical-brochure.png" },
+      { id: "b", label: "Service Brochure", image: "assets/service-brochure.png" },
+      { id: "c", label: "Connectivity Welcome Packet", image: "assets/connectivity-welcome-packet.png" },
+      { id: "d", label: "Cybersecurity Whitepaper", image: "assets/cybersecurity-whitepaper.png" },
+      { id: "e", label: "Privacy & Security Technical Brief", image: "assets/privacy-security-brief.png" },
+      { id: "f", label: "Installation Manual", image: "assets/installation-manual.png" },
+      { id: "g", label: "Surgeon Training Guide", image: "assets/surgeon-training-guide.png" },
+      { id: "h", label: "Audit Log Handbook", image: "assets/audit-log-handbook.png" },
+      { id: "i", label: "Marketing Product Poster", image: "assets/marketing-product-poster.png" },
+      { id: "j", label: "Sterilization Instructions", image: "assets/sterilization-instructions.png" }
     ],
     correctAnswer: ["a", "b", "c", "d", "e"],
     feedback: {
@@ -90,7 +93,10 @@ export const SCRIPT = [
   {
     id: "screen_06",
     type: "info",
-    character: { side: "right", id: "it" },
+    character: { side: "left", id: "biomed" },
+    characterMood: "thumbsup",
+    secondCharacter: { side: "right", id: "it" },
+    secondCharacterMood: "confused",
     body: [
       "The biomedical lead was quite convinced on the product offerings of Polyphonic.",
       "However, the IT lead still had a few unanswered questions.",
@@ -102,8 +108,8 @@ export const SCRIPT = [
   {
     id: "screen_07",
     type: "info",
-    character: { side: "left", id: "sales" },
-    characterMood: "confused",
+    character: null,
+    showAsset: "encryption-scene",
     body: [
       "You have no idea how to answer the question."
     ],
@@ -116,10 +122,10 @@ export const SCRIPT = [
     question: "Alas, it's beyond your scope. Who do you involve now?",
     multiSelect: false,
     options: [
-      { id: "a", label: "DUALTO Specialist" },
-      { id: "b", label: "Marketing team (Call Bhanu, Jigmee, & Puneet)" },
-      { id: "c", label: "APAC team" },
-      { id: "d", label: "Biomed" }
+      { id: "a", label: "DUALTO Specialist", image: "characters/dualto-specialist.png" },
+      { id: "b", label: "Marketing team (Call Bhanu, Jigmee, & Puneet)", image: "characters/marketing-team.png" },
+      { id: "c", label: "APAC team", image: "characters/apac-team.png" },
+      { id: "d", label: "Biomed", image: "characters/biomedical-team.png" }
     ],
     correctAnswer: ["a"],
     feedback: {
@@ -130,8 +136,11 @@ export const SCRIPT = [
   {
     id: "screen_09",
     type: "question",
-    character: null,
-    question: "The DUALTO specialist is not 100% sure on how to answer the question. The specialist needs additional support. Who will they reach out to?",
+    character: { side: "left", id: "specialist" },
+    secondCharacter: { side: "right", id: "sales" },
+    hideCharactersOnQuestion: true,
+    preText: "The DUALTO specialist is not 100% sure on how to answer the question. The specialist needs additional support. Who will they reach out to?",
+    question: "Who will the specialist reach out to?",
     multiSelect: false,
     options: [
       { id: "a", label: "Write an email to APAC Technical Team" },
@@ -351,7 +360,7 @@ export const SCRIPT = [
   {
     id: "screen_24",
     type: "question",
-    character: null,
+    character: { side: "right", id: "sales" },
     question: "\"I need you to fill out the ____\"",
     multiSelect: false,
     options: [
@@ -613,7 +622,8 @@ export const CHARACTERS = {
   sales: { id: "sales", name: "Sales Rep", placeholderColor: "#CA001B" },
   biomed: { id: "biomed", name: "Biomedical Lead", placeholderColor: "#1B2B5E" },
   it: { id: "it", name: "IT Lead", placeholderColor: "#2D3748" },
-  purchase: { id: "purchase", name: "Purchase Head", placeholderColor: "#7C3AED" }
+  purchase: { id: "purchase", name: "Purchase Head", placeholderColor: "#7C3AED" },
+  specialist: { id: "specialist", name: "DUALTO Specialist", placeholderColor: "#0891B2" }
 };
 
 export const STAGES = [

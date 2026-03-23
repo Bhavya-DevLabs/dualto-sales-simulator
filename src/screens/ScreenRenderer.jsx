@@ -25,6 +25,7 @@ export default function ScreenRenderer({
   onSubmit,
   onAdvance,
   onRestart,
+  onPreTextPhaseChange,
 }) {
   // Two-phase state: for question screens with preText,
   // show story first, then the question.
@@ -40,6 +41,14 @@ export default function ScreenRenderer({
       setShuffledOptions(shuffleArray(screen.options));
     }
   }, [screen?.id]);
+
+  // Notify parent about preText phase changes (for character visibility)
+  useEffect(() => {
+    if (onPreTextPhaseChange) {
+      const isInPreText = screen?.type === 'question' && !!screen?.preText && !storyComplete;
+      onPreTextPhaseChange(isInPreText);
+    }
+  }, [storyComplete, screen?.id, screen?.type, screen?.preText, onPreTextPhaseChange]);
 
   if (!screen) {
     return (
@@ -106,6 +115,7 @@ export default function ScreenRenderer({
             lines={lines}
             onComplete={() => setStoryComplete(true)}
             ctaLabel="Continue →"
+            showAsset={screen.preTextAsset || null}
           />
         );
       }

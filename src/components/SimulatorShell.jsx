@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Header from './Header';
 import CharacterFigure from './CharacterFigure';
@@ -40,6 +40,9 @@ export default function SimulatorShell({ user, onSignOut }) {
 
   const { isIdle, dismissIdle } = useIdleTimeout();
   const isAdmin = useAdminMode();
+
+  const [isPreTextPhase, setIsPreTextPhase] = useState(false);
+  const handlePreTextPhaseChange = useCallback((val) => setIsPreTextPhase(val), []);
 
   const stageInfo = useMemo(() => getCurrentStageInfo(currentScreenIndex), [currentScreenIndex]);
   const charSide = currentScreen?.character?.side || null;
@@ -104,18 +107,26 @@ export default function SimulatorShell({ user, onSignOut }) {
               onSubmit={submitAnswer}
               onAdvance={advance}
               onRestart={restart}
+              onPreTextPhaseChange={handlePreTextPhaseChange}
             />
           </motion.div>
         </AnimatePresence>
       </main>
 
-      {/* Character */}
-      <CharacterFigure
-        character={currentScreen?.character || null}
-        mood={currentScreen?.characterMood || null}
-        screenType={currentScreen?.type || null}
-        screenId={currentScreen?.id || null}
-      />
+      {/* Character — hide preText-only characters when question phase is active */}
+      {(() => {
+        const hideChars = currentScreen?.hideCharactersOnQuestion && !isPreTextPhase;
+        return (
+          <CharacterFigure
+            character={hideChars ? null : (currentScreen?.character || null)}
+            mood={currentScreen?.characterMood || null}
+            secondCharacter={hideChars ? null : (currentScreen?.secondCharacter || null)}
+            secondMood={currentScreen?.secondCharacterMood || null}
+            screenType={currentScreen?.type || null}
+            screenId={currentScreen?.id || null}
+          />
+        );
+      })()}
 
       {/* Feedback Overlay */}
       <FeedbackOverlay
