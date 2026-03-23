@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { ExternalLink as ExternalLinkIcon } from 'lucide-react';
 import CtaLabel from './CtaLabel';
 
@@ -37,28 +37,17 @@ export default function StoryScreen({
   linesAfter,
 }) {
   const asset = showAsset ? ASSET_MAP[showAsset] : null;
-  const totalLines = lines.length + (linesAfter ? linesAfter.length : 0);
-  const [visibleCount, setVisibleCount] = useState(1);
-  const allVisible = visibleCount >= totalLines;
 
-  const handleNext = useCallback(() => {
-    setVisibleCount((prev) => Math.min(prev + 1, totalLines));
-  }, [totalLines]);
-
-  // Enter key: reveal next line or complete
+  // Enter key: advance to next screen
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === 'Enter') {
-        if (allVisible) {
-          onComplete();
-        } else {
-          handleNext();
-        }
+        onComplete();
       }
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
-  }, [allVisible, onComplete, handleNext]);
+  }, [onComplete]);
 
   return (
     <div
@@ -98,7 +87,7 @@ export default function StoryScreen({
           </span>
         </div>
 
-        {/* Lines — revealed one at a time */}
+        {/* All lines shown immediately */}
         <div
           style={{
             display: 'flex',
@@ -107,38 +96,28 @@ export default function StoryScreen({
             marginBottom: 40,
           }}
         >
-          <AnimatePresence>
-            {lines.slice(0, visibleCount).map((line, i) => (
-              <motion.p
-                key={`before-${i}`}
-                style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontWeight: 500,
-                  fontSize: 20,
-                  color: '#FFFFFF',
-                  lineHeight: 1.8,
-                  textAlign: 'center',
-                  maxWidth: 640,
-                  margin: '0 auto',
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
-              >
-                {line}
-              </motion.p>
-            ))}
-          </AnimatePresence>
+          {lines.map((line, i) => (
+            <p
+              key={`before-${i}`}
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 500,
+                fontSize: 20,
+                color: '#FFFFFF',
+                lineHeight: 1.8,
+                textAlign: 'center',
+                maxWidth: 640,
+                margin: '0 auto',
+              }}
+            >
+              {line}
+            </p>
+          ))}
         </div>
 
-        {/* Asset image — shown after all "before" lines are visible */}
-        {visibleCount >= lines.length && asset && (
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
-            style={{ marginBottom: 20 }}
-          >
+        {/* Asset image */}
+        {asset && (
+          <div style={{ marginBottom: 20 }}>
             <img
               src={`${BASE}${asset.file}`}
               alt={asset.alt}
@@ -151,11 +130,11 @@ export default function StoryScreen({
                 display: 'block',
               }}
             />
-          </motion.div>
+          </div>
         )}
 
-        {/* Lines after asset — revealed after asset */}
-        {linesAfter && visibleCount > lines.length && (
+        {/* Lines after asset */}
+        {linesAfter && (
           <div
             style={{
               display: 'flex',
@@ -164,39 +143,29 @@ export default function StoryScreen({
               marginBottom: 40,
             }}
           >
-            <AnimatePresence>
-              {linesAfter.slice(0, visibleCount - lines.length).map((line, i) => (
-                <motion.p
-                  key={`after-${i}`}
-                  style={{
-                    fontFamily: "'Montserrat', sans-serif",
-                    fontWeight: 500,
-                    fontSize: 20,
-                    color: '#FFFFFF',
-                    lineHeight: 1.8,
-                    textAlign: 'center',
-                    maxWidth: 640,
-                    margin: '0 auto',
-                  }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, ease: 'easeOut' }}
-                >
-                  {line}
-                </motion.p>
-              ))}
-            </AnimatePresence>
+            {linesAfter.map((line, i) => (
+              <p
+                key={`after-${i}`}
+                style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: 500,
+                  fontSize: 20,
+                  color: '#FFFFFF',
+                  lineHeight: 1.8,
+                  textAlign: 'center',
+                  maxWidth: 640,
+                  margin: '0 auto',
+                }}
+              >
+                {line}
+              </p>
+            ))}
           </div>
         )}
 
-        {/* External link button — only when all lines are visible */}
-        {allVisible && externalLink && (
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
-            style={{ marginBottom: 20 }}
-          >
+        {/* External link button */}
+        {externalLink && (
+          <div style={{ marginBottom: 20 }}>
             <a
               href={externalLink.url}
               target="_blank"
@@ -227,69 +196,32 @@ export default function StoryScreen({
               <CtaLabel>{externalLink.label}</CtaLabel>
               <ExternalLinkIcon size={15} strokeWidth={2} />
             </a>
-          </motion.div>
+          </div>
         )}
 
-        {/* Navigation button — switches from Next to Continue */}
-        <AnimatePresence mode="wait">
-          {!allVisible ? (
-            <motion.button
-              key="next-btn"
-              onClick={handleNext}
-              style={{
-                backgroundColor: '#FFFFFF',
-                color: '#1B2B5E',
-                fontFamily: "'Montserrat', sans-serif",
-                fontWeight: 700,
-                fontSize: 15,
-                padding: '12px 40px',
-                borderRadius: 10,
-                border: 'none',
-                cursor: 'pointer',
-                boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-              }}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.25 }}
-              whileHover={{ scale: 1.02, backgroundColor: '#F0F0F0' }}
-              whileTap={{ scale: 0.97 }}
-            >
-              Next <span style={{ lineHeight: 1, display: 'inline-flex', alignItems: 'center' }}>→</span>
-            </motion.button>
-          ) : (
-            <motion.button
-              key="continue-btn"
-              onClick={onComplete}
-              style={{
-                backgroundColor: '#CA001B',
-                color: '#FFFFFF',
-                fontFamily: "'Montserrat', sans-serif",
-                fontWeight: 700,
-                fontSize: 15,
-                padding: '12px 40px',
-                borderRadius: 10,
-                border: 'none',
-                cursor: 'pointer',
-                boxShadow: '0 4px 16px rgba(202, 0, 27, 0.3)',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-              }}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              whileHover={{ scale: 1.02, backgroundColor: '#A8001A' }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <CtaLabel>{ctaLabel}</CtaLabel>
-            </motion.button>
-          )}
-        </AnimatePresence>
+        {/* CTA button */}
+        <motion.button
+          onClick={onComplete}
+          style={{
+            backgroundColor: '#CA001B',
+            color: '#FFFFFF',
+            fontFamily: "'Montserrat', sans-serif",
+            fontWeight: 700,
+            fontSize: 15,
+            padding: '12px 40px',
+            borderRadius: 10,
+            border: 'none',
+            cursor: 'pointer',
+            boxShadow: '0 4px 16px rgba(202, 0, 27, 0.3)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 8,
+          }}
+          whileHover={{ scale: 1.02, backgroundColor: '#A8001A' }}
+          whileTap={{ scale: 0.97 }}
+        >
+          <CtaLabel>{ctaLabel}</CtaLabel>
+        </motion.button>
       </div>
     </div>
   );
