@@ -19,7 +19,7 @@ const IMAGE_MAP = {
     default:  { file: 'sales-confident.png', facing: 'left' },
     thinking: { file: 'sales-excited.png',   facing: 'straight' },
     confused: { file: 'sales-stressed.png',  facing: 'straight' },
-    nervous:  { file: 'sales-nervous.png',   facing: 'right' },
+    nervous:  { file: 'sales-nervous.png',   facing: 'left' },
   },
   it: {
     default:  { file: 'it-lead.png',    facing: 'left' },

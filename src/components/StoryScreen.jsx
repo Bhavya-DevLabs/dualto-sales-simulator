@@ -223,6 +223,7 @@ export default function StoryScreen({
   showAsset,
   linesAfter,
   splitCharacters,
+  splitImage,
 }) {
   const asset = showAsset ? ASSET_MAP[showAsset] : null;
 
@@ -236,6 +237,75 @@ export default function StoryScreen({
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
   }, [onComplete]);
+
+  /* ─── Split single image layout: CSS-only left/right halves ─── */
+  if (splitImage) {
+    const imgUrl = `${BASE}${splitImage}`;
+    return (
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'stretch',
+          minHeight: 'calc(100vh - 76px)',
+          backgroundColor: '#1B2B5E',
+          marginLeft: -40,
+          marginRight: -40,
+        }}
+      >
+        {/* Left half of image — desktop only */}
+        <div
+          className="hidden lg:block"
+          style={{
+            flex: 1,
+            backgroundImage: `url(${imgUrl})`,
+            backgroundPosition: 'left bottom',
+            backgroundSize: 'auto 100%',
+            backgroundRepeat: 'no-repeat',
+            overflow: 'hidden',
+            minWidth: 0,
+          }}
+        />
+
+        {/* Center text container */}
+        <div
+          style={{
+            width: 560,
+            maxWidth: '100%',
+            flexShrink: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            padding: '60px 24px',
+          }}
+        >
+          <TextContent
+            lines={lines}
+            linesAfter={linesAfter}
+            asset={asset}
+            externalLink={externalLink}
+            ctaLabel={ctaLabel}
+            onComplete={onComplete}
+          />
+        </div>
+
+        {/* Right half of image — desktop only */}
+        <div
+          className="hidden lg:block"
+          style={{
+            flex: 1,
+            backgroundImage: `url(${imgUrl})`,
+            backgroundPosition: 'right bottom',
+            backgroundSize: 'auto 100%',
+            backgroundRepeat: 'no-repeat',
+            overflow: 'hidden',
+            minWidth: 0,
+          }}
+        />
+      </div>
+    );
+  }
 
   /* ─── Split character layout: [LEFT CHAR] | [TEXT] | [RIGHT CHAR] ─── */
   if (splitCharacters) {

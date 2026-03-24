@@ -103,6 +103,7 @@ export default function ScreenRenderer({
           showAsset={screen.showAsset}
           linesAfter={screen.bodyAfter || null}
           splitCharacters={screen.splitCharacters}
+          splitImage={screen.splitImage}
         />
       );
     }
