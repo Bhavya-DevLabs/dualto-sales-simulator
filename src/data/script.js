@@ -96,11 +96,7 @@ export const SCRIPT = [
   {
     id: "screen_06",
     type: "info",
-    character: { side: "left", id: "it" },
-    characterMood: "confused",
-    secondCharacter: { side: "right", id: "biomed" },
-    secondCharacterMood: "thumbsup",
-    showAsset: "encryption-it-guy",
+    character: { side: "right", id: "encryption-it" },
     body: [
       "The biomedical lead was quite convinced on the product offerings of Polyphonic.",
       "However, the IT lead still had a few unanswered questions.",
@@ -112,8 +108,7 @@ export const SCRIPT = [
   {
     id: "screen_07",
     type: "info",
-    character: null,
-    showAsset: "dualto-spec-confused",
+    character: { side: "left", id: "spec-confused" },
     body: [
       "You have no idea how to answer the question."
     ],
@@ -629,7 +624,9 @@ export const CHARACTERS = {
   biomed: { id: "biomed", name: "Biomedical Lead", placeholderColor: "#1B2B5E" },
   it: { id: "it", name: "IT Lead", placeholderColor: "#2D3748" },
   purchase: { id: "purchase", name: "Purchase Head", placeholderColor: "#7C3AED" },
-  specialist: { id: "specialist", name: "DUALTO Specialist", placeholderColor: "#0891B2" }
+  specialist: { id: "specialist", name: "DUALTO Specialist", placeholderColor: "#0891B2" },
+  'encryption-it': { id: "encryption-it", name: "IT Lead", placeholderColor: "#2D3748" },
+  'spec-confused': { id: "spec-confused", name: "Sales Rep", placeholderColor: "#CA001B" },
 };
 
 export const STAGES = [

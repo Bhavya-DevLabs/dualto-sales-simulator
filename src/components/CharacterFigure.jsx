@@ -35,6 +35,12 @@ const IMAGE_MAP = {
   specialist: {
     default: { file: 'dualto-specialist.png', facing: 'straight' },
   },
+  'encryption-it': {
+    default: { file: 'encryption-mechanism-it-guy.png', facing: 'straight' },
+  },
+  'spec-confused': {
+    default: { file: 'dualto-spec-confused.png', facing: 'straight' },
+  },
 };
 
 function getImageInfo(charId, mood) {
