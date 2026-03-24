@@ -1,6 +1,19 @@
 import { motion } from 'framer-motion';
 import OptionCard from './OptionCard';
 
+/**
+ * Dynamic column count based on option count:
+ * - Even counts: split evenly (2→2, 4→2, 6→3, 8→4)
+ * - Odd counts: use 3 per row, last row centers automatically
+ */
+function getColumns(count) {
+  if (count <= 2) return 2;
+  if (count === 3) return 3;
+  if (count === 4) return 2;
+  if (count <= 6) return 3;
+  return 4;
+}
+
 export default function OptionsGrid({
   options,
   selectedOptions,
@@ -24,8 +37,18 @@ export default function OptionsGrid({
   const effectiveCardLayout = isFourColumn ? 'four-column' : cardLayout;
 
   const gap = isVerticalLarge ? 16 : 12;
-  const cols = isFourColumn ? 4 : 3;
-  const maxWidth = isFourColumn ? 1140 : isVerticalLarge ? 900 : 780;
+
+  // four-column layout is explicit; otherwise compute dynamically
+  const cols = isFourColumn ? 4 : getColumns(options.length);
+
+  // Scale maxWidth to column count
+  const maxWidth = isFourColumn
+    ? 1140
+    : cols === 4
+      ? 1040
+      : cols === 3
+        ? (isVerticalLarge ? 900 : 780)
+        : (isVerticalLarge ? 640 : 540);
 
   // Fixed card width: fills exactly `cols` per row accounting for gaps
   const cardBasis = `calc((100% - ${gap * (cols - 1)}px) / ${cols})`;
