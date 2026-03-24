@@ -81,7 +81,7 @@ export const SCRIPT = [
     question: "Now you are planning to do a preliminary discussion around Polyphonic Fleet & connectivity with the BME & IT Team.\nWhat resources will you use for your discussion?",
     multiSelect: true,
     options: [
-      { id: "a", label: "Technical Brochure", image: "assets/technical-brochure.png" },
+      { id: "a", label: "Technical Brochure", image: "assets/technical-brochure.png", imageScale: 0.75 },
       { id: "b", label: "Service Brochure", image: "assets/service-brochure.png" },
       { id: "c", label: "Connectivity Welcome Packet", image: "assets/connectivity-welcome-packet.png" },
       { id: "d", label: "Cybersecurity Whitepaper", image: "assets/cybersecurity-whitepaper.png" },

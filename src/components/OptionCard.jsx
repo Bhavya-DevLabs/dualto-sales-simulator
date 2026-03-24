@@ -119,6 +119,7 @@ export default function OptionCard({
             maxWidth: '100%',
             objectFit: 'contain',
             marginBottom: 8,
+            transform: option.imageScale ? `scale(${option.imageScale})` : undefined,
           }}
           draggable={false}
         />
