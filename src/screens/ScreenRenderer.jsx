@@ -139,6 +139,9 @@ export default function ScreenRenderer({
             showAsset={screen.showAsset}
             onSelect={onSelect}
             onSubmit={onSubmit}
+            cardLayout={screen.cardLayout}
+            gridLayout={screen.gridLayout}
+            panelCharacters={screen.panelCharacters}
           />
         </motion.div>
       );

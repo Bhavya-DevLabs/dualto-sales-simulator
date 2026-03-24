@@ -3,6 +3,17 @@ import { CHARACTERS } from '../data/script';
 
 const BASE = import.meta.env.BASE_URL;
 
+/*
+ * TODO (PIC 07): One screen shows the WRONG character.
+ * The user will confirm which screen has the incorrect character and
+ * which character image should replace it. When confirmed:
+ *   1. Go to src/data/script.js
+ *   2. Find the screen entry with the wrong character.id
+ *   3. Change the character.id and/or characterMood to the correct values.
+ *   4. If the new character needs a new mood variant, add it to IMAGE_MAP below.
+ * Character sizing is already standardized via --character-height / --character-max-width
+ * CSS variables in index.css (PIC 04 fix).
+ */
 const IMAGE_MAP = {
   sales: {
     default:  { file: 'sales-confident.png', facing: 'left' },
@@ -76,9 +87,9 @@ function SingleCharacter({ character, mood, bgReady }) {
             src={src}
             alt={charData.name}
             style={{
-              height: 'calc(100vh - 60px)',
+              height: 'var(--character-height, calc(65vh - 60px))',
               width: 'auto',
-              maxWidth: '28vw',
+              maxWidth: 'var(--character-max-width, 22vw)',
               objectFit: 'contain',
               objectPosition: 'bottom',
               transform: mirrorTransform,

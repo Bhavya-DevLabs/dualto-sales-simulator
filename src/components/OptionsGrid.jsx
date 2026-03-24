@@ -7,23 +7,47 @@ export default function OptionsGrid({
   inputLocked,
   feedbackState,
   onSelect,
+  gridLayout,
+  cardLayout,
 }) {
+  const isFourColumn = gridLayout === 'four-column';
+  const isVerticalLarge = cardLayout === 'vertical-large';
   const isOdd = options.length % 2 !== 0;
+
+  // CSS class for responsive overrides
+  const gridClass = isFourColumn
+    ? 'options-grid-four-column'
+    : isVerticalLarge
+      ? 'options-grid-vertical-large'
+      : 'options-grid-responsive';
+
+  // Effective cardLayout passed to each card
+  const effectiveCardLayout = isFourColumn ? 'four-column' : cardLayout;
+
+  // Grid columns: 4 for four-column, 3 for vertical-large (portrait cards), 2 default
+  const columns = isFourColumn
+    ? 'repeat(4, 1fr)'
+    : isVerticalLarge
+      ? 'repeat(3, 1fr)'
+      : '1fr 1fr';
+
+  const maxWidth = isFourColumn ? 1140 : isVerticalLarge ? 900 : 780;
 
   return (
     <div
-      className="options-grid-responsive"
+      className={gridClass}
       style={{
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: 12,
+        gridTemplateColumns: columns,
+        gap: isVerticalLarge ? 16 : 12,
         width: '100%',
-        maxWidth: 780,
+        maxWidth,
         alignItems: 'stretch',
       }}
     >
       {options.map((option, index) => {
-        const isLastAndOdd = isOdd && index === options.length - 1;
+        // For default 2-column: last odd item spans 2 cols. Others: no spanning.
+        const isLastAndOdd = !isFourColumn && !isVerticalLarge && isOdd && index === options.length - 1;
 
         return (
           <motion.div
@@ -47,6 +71,7 @@ export default function OptionsGrid({
                 feedbackState === 'wrong' && selectedOptions.includes(option.id)
               }
               onSelect={onSelect}
+              cardLayout={effectiveCardLayout}
             />
           </motion.div>
         );

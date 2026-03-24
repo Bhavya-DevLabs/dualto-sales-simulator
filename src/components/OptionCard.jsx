@@ -38,9 +38,21 @@ export default function OptionCard({
   isDisabled,
   shouldShake,
   onSelect,
+  cardLayout,
 }) {
   const Icon = getIconForLabel(option.label);
   const hasImage = !!option.image;
+
+  const isVerticalLarge = cardLayout === 'vertical-large';
+  const isFourColumn = cardLayout === 'four-column';
+
+  // Image height: 75% larger (140px) for four-column, double (160px) for vertical-large portrait cards
+  const imgHeight = isFourColumn ? 140 : isVerticalLarge ? 160 : 80;
+  // Vertical-large: 320px min-height ensures cards are taller than their ~280px width in 3-col grid
+  const cardMinHeight = hasImage
+    ? (isVerticalLarge ? 320 : isFourColumn ? 200 : 140)
+    : 100;
+  const cardPadding = isVerticalLarge ? '24px 16px' : hasImage ? '16px 12px' : '20px';
 
   const handleSelect = () => {
     if (!isDisabled) onSelect(option.id);
@@ -66,8 +78,8 @@ export default function OptionCard({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        minHeight: hasImage ? 140 : 100,
-        padding: hasImage ? '16px 12px' : 20,
+        minHeight: cardMinHeight,
+        padding: cardPadding,
         backgroundColor: isSelected ? '#ECFEFF' : '#FFFFFF',
         borderRadius: 16,
         border: isSelected ? '2px solid #0891B2' : '1.5px solid #CCFBF1',
@@ -102,8 +114,8 @@ export default function OptionCard({
           src={`${BASE}${option.image}`}
           alt={option.label}
           style={{
-            height: 80,
-            width: 'auto',
+            height: imgHeight,
+            width: '100%',
             maxWidth: '100%',
             objectFit: 'contain',
             marginBottom: 8,

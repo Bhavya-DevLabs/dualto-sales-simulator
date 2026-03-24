@@ -21,13 +21,25 @@ export default function QuestionPanel({
   showAsset,
   onSelect,
   onSubmit,
+  cardLayout,
+  gridLayout,
+  panelCharacters,
 }) {
   const asset = showAsset ? ASSET_MAP[showAsset] : null;
+
+  // Wider container for vertical-large (PIC 02/06) and four-column (PIC 03) layouts
+  const isFourColumn = gridLayout === 'four-column';
+  const isVerticalLarge = cardLayout === 'vertical-large';
+  const isWide = isVerticalLarge || isFourColumn;
+  // Container must be wider than grid maxWidth to allow padding: 1200 > 1140, 960 > 900
+  const containerMaxWidth = isFourColumn ? 1200 : isVerticalLarge ? 960 : 780;
+  const questionMaxWidth = isWide ? '100%' : 680;
+
   return (
     <div
       style={{
         width: '100%',
-        maxWidth: 780,
+        maxWidth: containerMaxWidth,
         margin: '0 auto',
         display: 'flex',
         flexDirection: 'column',
@@ -74,7 +86,7 @@ export default function QuestionPanel({
           textAlign: 'center',
           lineHeight: 1.5,
           marginBottom: multiSelect ? 8 : 32,
-          maxWidth: 680,
+          maxWidth: questionMaxWidth,
           whiteSpace: 'pre-line',
         }}
       >
@@ -119,7 +131,64 @@ export default function QuestionPanel({
         inputLocked={inputLocked}
         feedbackState={feedbackState}
         onSelect={onSelect}
+        gridLayout={gridLayout}
+        cardLayout={cardLayout}
       />
+
+      {/* Panel characters — observer row below options (PIC 03) */}
+      {panelCharacters && panelCharacters.length > 0 && (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: 32,
+            marginTop: 28,
+            paddingTop: 20,
+            borderTop: '1px solid #CCFBF1',
+            width: '100%',
+          }}
+        >
+          {panelCharacters.map((char) => (
+            <div
+              key={char.id}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 8,
+              }}
+            >
+              {/* TODO (PIC 03): Confirm specific character image files with user */}
+              <img
+                src={`${BASE}${char.image}`}
+                alt={char.label}
+                style={{
+                  height: 72,
+                  width: 72,
+                  objectFit: 'contain',
+                  borderRadius: '50%',
+                  backgroundColor: '#F0FDFA',
+                  padding: 4,
+                  border: '2px solid #CCFBF1',
+                }}
+                draggable={false}
+              />
+              <span
+                style={{
+                  fontFamily: "'Noto Sans', sans-serif",
+                  fontWeight: 600,
+                  fontSize: 11,
+                  color: '#134E4A',
+                  textAlign: 'center',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {char.label}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
 
       <SubmitButton
         disabled={inputLocked || selectedOptions.length === 0}

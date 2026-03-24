@@ -7,7 +7,7 @@ export const SCRIPT = [
     id: "screen_01",
     type: "intro",
     character: { side: "right", id: "sales" },
-    characterMood: "nervous",
+    characterMood: "default",
     heading: "Welcome!",
     body: [
       "You've received a hot lead for DUALTO in Apollo Hospital, Delhi.",
@@ -49,6 +49,7 @@ export const SCRIPT = [
     id: "screen_04",
     type: "question",
     character: null,
+    cardLayout: "vertical-large",
     preTextAsset: "hcp-group",
     preText: "You have successfully convinced all HCPs on DUALTO's features & benefits with multiple demonstrations across multiple departments.\n\nNow, you are stuck.\n\nWhat about connectivity & polyphonic – how do you start the discussion around it?\n\nLet's begin with identifying your key stakeholders for this step.",
     question: "Who are the key stakeholders for the connectivity & Polyphonic Fleet discussion?",
@@ -70,6 +71,13 @@ export const SCRIPT = [
     id: "screen_05",
     type: "question",
     character: null,
+    gridLayout: "four-column",
+    // TODO (PIC 03): Confirm specific character image files for these panel characters
+    panelCharacters: [
+      { id: "it", label: "IT Lead", image: "characters/it-lead.png" },
+      { id: "sales", label: "Sales Lead", image: "characters/sales-confident.png" },
+      { id: "biomed", label: "BioMed Lead", image: "characters/biomed-lead.png" },
+    ],
     question: "Now you are planning to do a preliminary discussion around Polyphonic Fleet & connectivity with the BME & IT Team.\nWhat resources will you use for your discussion?",
     multiSelect: true,
     options: [
@@ -119,6 +127,7 @@ export const SCRIPT = [
     id: "screen_08",
     type: "question",
     character: null,
+    cardLayout: "vertical-large",
     question: "Alas, it's beyond your scope. Who do you involve now?",
     multiSelect: false,
     options: [
@@ -340,6 +349,7 @@ export const SCRIPT = [
     id: "screen_22",
     type: "info",
     character: { side: "right", id: "sales" },
+    characterMood: "confused",
     body: [
       "It's time to create the Polyphonic Fleet account for the hospital.",
       "So that during installation, they can link their DUALTO system to their account.",

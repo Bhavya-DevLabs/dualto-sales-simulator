@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Character sizing — single source of truth (PIC 04 global standard) */
+:root {
+  --character-height: calc(65vh - 60px);
+  --character-max-width: 22vw;
+}
+
 @theme {
   --color-jj-red: #CA001B;
   --color-jj-blue: #1B2B5E;
@@ -64,12 +70,39 @@ body {
   top: 0;
 }
 
+/* 4-column grid layout for product identification screens (PIC 03) */
+.options-grid-four-column {
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+
+/* 3-column vertical-large grid for portrait card screens (PIC 02/06) */
+.options-grid-vertical-large {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+
+@media (max-width: 900px) {
+  .options-grid-four-column {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .options-grid-vertical-large {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
 /* Responsive single-column grid for small screens */
 @media (max-width: 540px) {
   .options-grid-responsive {
     grid-template-columns: 1fr !important;
   }
-  .options-grid-responsive > * {
+  .options-grid-four-column {
+    grid-template-columns: 1fr !important;
+  }
+  .options-grid-vertical-large {
+    grid-template-columns: 1fr !important;
+  }
+  .options-grid-responsive > *,
+  .options-grid-four-column > *,
+  .options-grid-vertical-large > * {
     grid-column: span 1 !important;
   }
   .header-pills-responsive {
