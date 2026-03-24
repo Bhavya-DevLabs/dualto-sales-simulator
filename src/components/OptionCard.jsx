@@ -109,20 +109,31 @@ export default function OptionCard({
       aria-disabled={isDisabled}
     >
       {hasImage ? (
-        /* Image-based card: character clipart or resource icon on top */
-        <img
-          src={`${BASE}${option.image}`}
-          alt={option.label}
+        /* Image container: fixed height, bottom-aligned so characters stand on same ground */
+        <div
           style={{
             height: imgHeight,
             width: '100%',
-            maxWidth: '100%',
-            objectFit: 'contain',
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'center',
             marginBottom: 8,
-            transform: option.imageScale ? `scale(${option.imageScale})` : undefined,
+            flexShrink: 0,
           }}
-          draggable={false}
-        />
+        >
+          <img
+            src={`${BASE}${option.image}`}
+            alt={option.label}
+            style={{
+              maxHeight: '100%',
+              width: 'auto',
+              maxWidth: '100%',
+              objectFit: 'contain',
+              transform: option.imageScale ? `scale(${option.imageScale})` : undefined,
+            }}
+            draggable={false}
+          />
+        </div>
       ) : (
         /* Icon circle — centered above text (default) */
         <div

@@ -102,6 +102,7 @@ export default function ScreenRenderer({
           externalLink={screen.externalLink}
           showAsset={screen.showAsset}
           linesAfter={screen.bodyAfter || null}
+          splitCharacters={screen.splitCharacters}
         />
       );
     }

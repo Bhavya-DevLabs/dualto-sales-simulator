@@ -96,20 +96,28 @@ export const SCRIPT = [
   {
     id: "screen_06",
     type: "info",
-    character: { side: "right", id: "encryption-it" },
+    character: null,
+    splitCharacters: {
+      left: "characters/biomed-thumbsup.png",
+      right: "characters/it-confused.png",
+    },
     body: [
       "The biomedical lead was quite convinced on the product offerings of Polyphonic.",
       "However, the IT lead still had a few unanswered questions.",
-      "The hospital IT team has a very technical question for you!",
-      "\"What kind of encryption mechanism does DUALTO use?\""
+      "The hospital IT team has a very technical question for you!"
     ],
     ctaLabel: "Oh no..."
   },
   {
     id: "screen_07",
     type: "info",
-    character: { side: "left", id: "spec-confused" },
+    character: null,
+    splitCharacters: {
+      left: "characters/it-lead.png",
+      right: "characters/sales-nervous.png",
+    },
     body: [
+      "\"What kind of encryption mechanism does DUALTO use?\"",
       "You have no idea how to answer the question."
     ],
     ctaLabel: "Find Help"
