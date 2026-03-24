@@ -5,6 +5,8 @@ export default function BackgroundPattern() {
 
   return (
     <svg
+      width="100%"
+      height="100%"
       style={{
         position: 'fixed',
         top: 0,

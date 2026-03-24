@@ -76,8 +76,8 @@ function SingleCharacter({ character, mood, bgReady }) {
           style={{
             position: 'fixed',
             bottom: 0,
-            left: isLeft ? '2vw' : 'auto',
-            right: isLeft ? 'auto' : '2vw',
+            left: isLeft ? '12vw' : 'auto',
+            right: isLeft ? 'auto' : '12vw',
             zIndex: 10,
             pointerEvents: 'none',
           }}
