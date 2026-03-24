@@ -31,6 +31,16 @@ const ASSET_MAP = {
     alt: 'IT Lead asks about encryption mechanism',
     maxWidth: '480px',
   },
+  'encryption-it-guy': {
+    file: 'assets/encryption-mechanism-it-guy.png',
+    alt: 'IT Lead asking about encryption mechanism',
+    maxWidth: '520px',
+  },
+  'dualto-spec-confused': {
+    file: 'assets/dualto-spec-confused.png',
+    alt: 'Confused about the answer',
+    maxWidth: '520px',
+  },
   'hcp-group': {
     file: 'characters/hcp-group.png',
     alt: 'Sales rep discussing with HCPs',

@@ -100,6 +100,7 @@ export const SCRIPT = [
     characterMood: "confused",
     secondCharacter: { side: "right", id: "biomed" },
     secondCharacterMood: "thumbsup",
+    showAsset: "encryption-it-guy",
     body: [
       "The biomedical lead was quite convinced on the product offerings of Polyphonic.",
       "However, the IT lead still had a few unanswered questions.",
@@ -112,7 +113,7 @@ export const SCRIPT = [
     id: "screen_07",
     type: "info",
     character: null,
-    showAsset: "encryption-scene",
+    showAsset: "dualto-spec-confused",
     body: [
       "You have no idea how to answer the question."
     ],
