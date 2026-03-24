@@ -9,6 +9,11 @@ const ASSET_MAP = {
     alt: 'Email reference',
     maxWidth: '480px',
   },
+  'discussion-resources': {
+    file: 'assets/discussion-using-resources.png',
+    alt: 'Discussion using resources',
+    maxWidth: '600px',
+  },
 };
 
 export default function QuestionPanel({

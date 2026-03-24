@@ -72,12 +72,7 @@ export const SCRIPT = [
     type: "question",
     character: null,
     gridLayout: "four-column",
-    // TODO (PIC 03): Confirm specific character image files for these panel characters
-    panelCharacters: [
-      { id: "it", label: "IT Lead", image: "characters/it-lead.png" },
-      { id: "sales", label: "Sales Lead", image: "characters/sales-confident.png" },
-      { id: "biomed", label: "BioMed Lead", image: "characters/biomed-lead.png" },
-    ],
+    showAsset: "discussion-resources",
     question: "Now you are planning to do a preliminary discussion around Polyphonic Fleet & connectivity with the BME & IT Team.\nWhat resources will you use for your discussion?",
     multiSelect: true,
     options: [
