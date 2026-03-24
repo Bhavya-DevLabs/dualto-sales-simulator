@@ -42,6 +42,7 @@ export default function OptionsGrid({
         gap: isVerticalLarge ? 16 : 12,
         width: '100%',
         maxWidth,
+        margin: '0 auto',
         alignItems: 'stretch',
       }}
     >

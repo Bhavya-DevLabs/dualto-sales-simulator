@@ -150,7 +150,7 @@ export default function OptionCard({
         style={{
           fontFamily: "'Noto Sans', sans-serif",
           fontWeight: 500,
-          fontSize: hasImage ? 13 : 15,
+          fontSize: 15,
           color: '#134E4A',
           lineHeight: 1.45,
           textAlign: 'center',

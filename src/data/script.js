@@ -101,10 +101,10 @@ export const SCRIPT = [
   {
     id: "screen_06",
     type: "info",
-    character: { side: "left", id: "biomed" },
-    characterMood: "thumbsup",
-    secondCharacter: { side: "right", id: "it" },
-    secondCharacterMood: "confused",
+    character: { side: "left", id: "it" },
+    characterMood: "confused",
+    secondCharacter: { side: "right", id: "biomed" },
+    secondCharacterMood: "thumbsup",
     body: [
       "The biomedical lead was quite convinced on the product offerings of Polyphonic.",
       "However, the IT lead still had a few unanswered questions.",
