@@ -19,7 +19,7 @@ export const SCRIPT = [
   {
     id: "screen_02",
     type: "question",
-    character: { side: "right", id: "sales" },
+    character: { side: "left", id: "sales" },
     characterMood: "nervous",
     question: "What is the first step in the onboarding journey?",
     multiSelect: false,
@@ -113,8 +113,9 @@ export const SCRIPT = [
     type: "info",
     character: null,
     splitCharacters: {
-      left: "characters/it-lead.png",
+      left: "characters/encryption-mechanism-it-guy.png",
       right: "characters/sales-nervous.png",
+      rightFlip: true,
     },
     body: [
       "\"What kind of encryption mechanism does DUALTO use?\"",

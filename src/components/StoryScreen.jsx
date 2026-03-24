@@ -323,6 +323,7 @@ export default function StoryScreen({
               objectFit: 'contain',
               objectPosition: 'bottom center',
               display: 'block',
+              transform: splitCharacters.rightFlip ? 'scaleX(-1)' : undefined,
             }}
             draggable={false}
           />
