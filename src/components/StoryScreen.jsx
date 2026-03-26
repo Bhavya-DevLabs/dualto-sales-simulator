@@ -266,7 +266,7 @@ export default function StoryScreen({
               src={`${BASE}${splitCharacters.left}`}
               alt=""
               style={{
-                height: 'calc(100vh - 76px)',
+                height: 'var(--character-height, calc(80vh - 60px))',
                 width: 'auto',
                 maxWidth: '100%',
                 objectFit: 'contain',
@@ -318,7 +318,7 @@ export default function StoryScreen({
               src={`${BASE}${splitCharacters.right}`}
               alt=""
               style={{
-                height: 'calc(100vh - 76px)',
+                height: 'var(--character-height, calc(80vh - 60px))',
                 width: 'auto',
                 maxWidth: '100%',
                 objectFit: 'contain',
