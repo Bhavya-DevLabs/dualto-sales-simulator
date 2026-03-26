@@ -127,7 +127,7 @@ export const SCRIPT = [
     type: "question",
     character: null,
     cardLayout: "vertical-large",
-    question: "Alas, it's beyond your scope. Who do you involve now?",
+    question: "It's beyond your scope. Who do you involve now?",
     multiSelect: false,
     options: [
       { id: "a", label: "DUALTO Specialist", image: "characters/dualto-specialist.png" },
