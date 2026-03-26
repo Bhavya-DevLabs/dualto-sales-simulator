@@ -259,6 +259,7 @@ export default function StoryScreen({
             justifyContent: 'flex-end',
             overflow: 'hidden',
             minWidth: 0,
+            paddingBottom: 38,
           }}
         >
           {splitCharacters.left && (
@@ -321,6 +322,7 @@ export default function StoryScreen({
             justifyContent: 'flex-start',
             overflow: 'hidden',
             minWidth: 0,
+            paddingBottom: 38,
           }}
         >
           {splitCharacters.right && (
