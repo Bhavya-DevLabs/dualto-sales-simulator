@@ -144,9 +144,12 @@ export const SCRIPT = [
   {
     id: "screen_09",
     type: "question",
-    character: { side: "left", id: "specialist" },
-    secondCharacter: { side: "right", id: "sales" },
+    character: null,
     hideCharactersOnQuestion: true,
+    preTextSplitCharacters: {
+      left: "characters/dualto-specialist-unsure-left.png",
+      right: "characters/dualto-specialist-unsure-right.png",
+    },
     preText: "The DUALTO specialist is not 100% sure on how to answer the question. The specialist needs additional support. Who will they reach out to?",
     question: "Who will the specialist reach out to?",
     multiSelect: false,

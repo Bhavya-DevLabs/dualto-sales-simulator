@@ -117,6 +117,7 @@ export default function ScreenRenderer({
             onComplete={() => setStoryComplete(true)}
             ctaLabel="Continue →"
             showAsset={screen.preTextAsset || null}
+            splitCharacters={screen.preTextSplitCharacters || null}
           />
         );
       }
