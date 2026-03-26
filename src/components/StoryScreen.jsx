@@ -262,23 +262,29 @@ export default function StoryScreen({
           }}
         >
           {splitCharacters.left && (
-            <img
-              src={`${BASE}${splitCharacters.left}`}
-              alt=""
+            <div
               style={{
-                height: splitCharacters.scale
-                  ? `calc(var(--character-height, calc(80vh - 60px)) * ${splitCharacters.scale})`
-                  : 'var(--character-height, calc(80vh - 60px))',
-                width: 'auto',
-                maxWidth: splitCharacters.scale
-                  ? `calc(var(--character-max-width, 28vw) * ${splitCharacters.scale})`
-                  : 'var(--character-max-width, 28vw)',
-                objectFit: 'contain',
-                objectPosition: 'bottom right',
-                display: 'block',
+                height: 'var(--character-height, calc(80vh - 60px))',
+                maxWidth: 'var(--character-max-width, 28vw)',
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'flex-end',
               }}
-              draggable={false}
-            />
+            >
+              <img
+                src={`${BASE}${splitCharacters.left}`}
+                alt=""
+                style={{
+                  height: splitCharacters.scale ? `${splitCharacters.scale * 100}%` : '100%',
+                  width: 'auto',
+                  maxWidth: '100%',
+                  objectFit: 'contain',
+                  objectPosition: 'bottom right',
+                  display: 'block',
+                }}
+                draggable={false}
+              />
+            </div>
           )}
         </div>
 
@@ -318,23 +324,29 @@ export default function StoryScreen({
           }}
         >
           {splitCharacters.right && (
-            <img
-              src={`${BASE}${splitCharacters.right}`}
-              alt=""
+            <div
               style={{
-                height: splitCharacters.scale
-                  ? `calc(var(--character-height, calc(80vh - 60px)) * ${splitCharacters.scale})`
-                  : 'var(--character-height, calc(80vh - 60px))',
-                width: 'auto',
-                maxWidth: splitCharacters.scale
-                  ? `calc(var(--character-max-width, 28vw) * ${splitCharacters.scale})`
-                  : 'var(--character-max-width, 28vw)',
-                objectFit: 'contain',
-                objectPosition: 'bottom left',
-                display: 'block',
+                height: 'var(--character-height, calc(80vh - 60px))',
+                maxWidth: 'var(--character-max-width, 28vw)',
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'flex-start',
               }}
-              draggable={false}
-            />
+            >
+              <img
+                src={`${BASE}${splitCharacters.right}`}
+                alt=""
+                style={{
+                  height: splitCharacters.scale ? `${splitCharacters.scale * 100}%` : '100%',
+                  width: 'auto',
+                  maxWidth: '100%',
+                  objectFit: 'contain',
+                  objectPosition: 'bottom left',
+                  display: 'block',
+                }}
+                draggable={false}
+              />
+            </div>
           )}
         </div>
       </div>
