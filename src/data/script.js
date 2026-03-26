@@ -97,7 +97,10 @@ export const SCRIPT = [
     id: "screen_06",
     type: "info",
     character: null,
-    splitImage: "assets/encryption-mechanism-it-guy.png",
+    splitCharacters: {
+      left: "characters/encryption-it-guy-left.png",
+      right: "characters/encryption-it-guy-right.png",
+    },
     body: [
       "The biomedical lead was quite convinced on the product offerings of Polyphonic.",
       "However, the IT lead still had a few unanswered questions.",
@@ -109,7 +112,10 @@ export const SCRIPT = [
     id: "screen_07",
     type: "info",
     character: null,
-    splitImage: "assets/dualto-spec-confused.png",
+    splitCharacters: {
+      left: "characters/dualto-spec-confused-left.png",
+      right: "characters/dualto-spec-confused-right.png",
+    },
     body: [
       "\"What kind of encryption mechanism does DUALTO use?\"",
       "You have no idea how to answer the question."
