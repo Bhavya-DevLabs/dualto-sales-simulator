@@ -266,14 +266,16 @@ export default function StoryScreen({
               src={`${BASE}${splitCharacters.left}`}
               alt=""
               style={{
-                height: 'var(--character-height, calc(80vh - 60px))',
+                height: splitCharacters.scale
+                  ? `calc(var(--character-height, calc(80vh - 60px)) * ${splitCharacters.scale})`
+                  : 'var(--character-height, calc(80vh - 60px))',
                 width: 'auto',
-                maxWidth: 'var(--character-max-width, 28vw)',
+                maxWidth: splitCharacters.scale
+                  ? `calc(var(--character-max-width, 28vw) * ${splitCharacters.scale})`
+                  : 'var(--character-max-width, 28vw)',
                 objectFit: 'contain',
                 objectPosition: 'bottom right',
                 display: 'block',
-                transform: splitCharacters.scale ? `scale(${splitCharacters.scale})` : undefined,
-                transformOrigin: 'bottom right',
               }}
               draggable={false}
             />
@@ -320,14 +322,16 @@ export default function StoryScreen({
               src={`${BASE}${splitCharacters.right}`}
               alt=""
               style={{
-                height: 'var(--character-height, calc(80vh - 60px))',
+                height: splitCharacters.scale
+                  ? `calc(var(--character-height, calc(80vh - 60px)) * ${splitCharacters.scale})`
+                  : 'var(--character-height, calc(80vh - 60px))',
                 width: 'auto',
-                maxWidth: 'var(--character-max-width, 28vw)',
+                maxWidth: splitCharacters.scale
+                  ? `calc(var(--character-max-width, 28vw) * ${splitCharacters.scale})`
+                  : 'var(--character-max-width, 28vw)',
                 objectFit: 'contain',
                 objectPosition: 'bottom left',
                 display: 'block',
-                transform: splitCharacters.scale ? `scale(${splitCharacters.scale})` : undefined,
-                transformOrigin: 'bottom left',
               }}
               draggable={false}
             />
