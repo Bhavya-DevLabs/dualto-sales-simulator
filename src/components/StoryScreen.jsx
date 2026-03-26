@@ -261,19 +261,21 @@ export default function StoryScreen({
             minWidth: 0,
           }}
         >
-          <img
-            src={`${BASE}${splitCharacters.left}`}
-            alt=""
-            style={{
-              height: 'calc(100vh - 76px)',
-              width: 'auto',
-              maxWidth: '100%',
-              objectFit: 'contain',
-              objectPosition: 'bottom right',
-              display: 'block',
-            }}
-            draggable={false}
-          />
+          {splitCharacters.left && (
+            <img
+              src={`${BASE}${splitCharacters.left}`}
+              alt=""
+              style={{
+                height: 'calc(100vh - 76px)',
+                width: 'auto',
+                maxWidth: '100%',
+                objectFit: 'contain',
+                objectPosition: 'bottom right',
+                display: 'block',
+              }}
+              draggable={false}
+            />
+          )}
         </div>
 
         {/* Center text container */}
@@ -311,19 +313,21 @@ export default function StoryScreen({
             minWidth: 0,
           }}
         >
-          <img
-            src={`${BASE}${splitCharacters.right}`}
-            alt=""
-            style={{
-              height: 'calc(100vh - 76px)',
-              width: 'auto',
-              maxWidth: '100%',
-              objectFit: 'contain',
-              objectPosition: 'bottom left',
-              display: 'block',
-            }}
-            draggable={false}
-          />
+          {splitCharacters.right && (
+            <img
+              src={`${BASE}${splitCharacters.right}`}
+              alt=""
+              style={{
+                height: 'calc(100vh - 76px)',
+                width: 'auto',
+                maxWidth: '100%',
+                objectFit: 'contain',
+                objectPosition: 'bottom left',
+                display: 'block',
+              }}
+              draggable={false}
+            />
+          )}
         </div>
       </div>
     );

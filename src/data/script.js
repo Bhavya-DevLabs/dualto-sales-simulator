@@ -206,7 +206,10 @@ export const SCRIPT = [
   {
     id: "screen_12",
     type: "info",
-    character: { side: "right", id: "it" },
+    character: null,
+    splitCharacters: {
+      right: "characters/it-lead.png",
+    },
     body: [
       "The email is complete!",
       "You send it.",
