@@ -2,8 +2,8 @@
 
 /* Character sizing — single source of truth (PIC 04 global standard) */
 :root {
-  --character-height: calc(65vh - 60px);
-  --character-max-width: 22vw;
+  --character-height: calc(80vh - 60px);
+  --character-max-width: 28vw;
 }
 
 @theme {
