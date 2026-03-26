@@ -265,11 +265,11 @@ export default function StoryScreen({
             src={`${BASE}${splitCharacters.left}`}
             alt=""
             style={{
-              height: 'var(--character-height, calc(80vh - 60px))',
+              height: 'calc(100vh - 76px)',
               width: 'auto',
-              maxWidth: 'var(--character-max-width, 28vw)',
+              maxWidth: '100%',
               objectFit: 'contain',
-              objectPosition: 'bottom',
+              objectPosition: 'bottom right',
               display: 'block',
             }}
             draggable={false}
@@ -315,11 +315,11 @@ export default function StoryScreen({
             src={`${BASE}${splitCharacters.right}`}
             alt=""
             style={{
-              height: 'var(--character-height, calc(80vh - 60px))',
+              height: 'calc(100vh - 76px)',
               width: 'auto',
-              maxWidth: 'var(--character-max-width, 28vw)',
+              maxWidth: '100%',
               objectFit: 'contain',
-              objectPosition: 'bottom',
+              objectPosition: 'bottom left',
               display: 'block',
             }}
             draggable={false}
