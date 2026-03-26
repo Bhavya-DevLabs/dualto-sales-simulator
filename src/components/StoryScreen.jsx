@@ -272,6 +272,8 @@ export default function StoryScreen({
                 objectFit: 'contain',
                 objectPosition: 'bottom right',
                 display: 'block',
+                transform: splitCharacters.scale ? `scale(${splitCharacters.scale})` : undefined,
+                transformOrigin: 'bottom right',
               }}
               draggable={false}
             />
@@ -324,6 +326,8 @@ export default function StoryScreen({
                 objectFit: 'contain',
                 objectPosition: 'bottom left',
                 display: 'block',
+                transform: splitCharacters.scale ? `scale(${splitCharacters.scale})` : undefined,
+                transformOrigin: 'bottom left',
               }}
               draggable={false}
             />

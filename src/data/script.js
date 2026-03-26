@@ -149,6 +149,7 @@ export const SCRIPT = [
     preTextSplitCharacters: {
       left: "characters/dualto-specialist-unsure-left.png",
       right: "characters/dualto-specialist-unsure-right.png",
+      scale: 0.72,
     },
     preText: "The DUALTO specialist is not 100% sure on how to answer the question. The specialist needs additional support. Who will they reach out to?",
     question: "Who will the specialist reach out to?",
