@@ -93,9 +93,9 @@ function SingleCharacter({ character, mood, bgReady }) {
             src={src}
             alt={charData.name}
             style={{
-              height: 'var(--character-height, calc(65vh - 60px))',
+              height: 'var(--character-height, calc(80vh - 60px))',
               width: 'auto',
-              maxWidth: 'var(--character-max-width, 22vw)',
+              maxWidth: 'var(--character-max-width, 28vw)',
               objectFit: 'contain',
               objectPosition: 'bottom',
               transform: mirrorTransform,

@@ -268,7 +268,7 @@ export default function StoryScreen({
               style={{
                 height: 'var(--character-height, calc(80vh - 60px))',
                 width: 'auto',
-                maxWidth: '100%',
+                maxWidth: 'var(--character-max-width, 28vw)',
                 objectFit: 'contain',
                 objectPosition: 'bottom right',
                 display: 'block',
@@ -320,7 +320,7 @@ export default function StoryScreen({
               style={{
                 height: 'var(--character-height, calc(80vh - 60px))',
                 width: 'auto',
-                maxWidth: '100%',
+                maxWidth: 'var(--character-max-width, 28vw)',
                 objectFit: 'contain',
                 objectPosition: 'bottom left',
                 display: 'block',
